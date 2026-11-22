@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Servicios Técnicos Naranjo — Calidad y buen servicio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
-  <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Servicios Técnicos Naranjo — Calidad y buen servicio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
 :root{--black:#0a0a0a;--black-soft:#111111;--black-card:#161616;--black-border:#242424;--grey-dark:#2a2a2a;--grey-mid:#666666;--grey-light:#aaaaaa;--white:#ffffff;--white-off:#f0f0f0;--red:#cc1a1a;--red-bright:#e82020;--font-display:'Barlow Condensed',sans-serif;--font-body:'Barlow',sans-serif;--header-h:64px;--section-pad:clamp(60px,8vw,100px);--container-w:1140px;--radius:4px;--transition:0.25s ease;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -98,146 +98,289 @@ a{color:inherit;text-decoration:none}
 @media(max-width:600px){:root{--header-h:56px}.menu-toggle{display:flex}.main-nav{position:fixed;top:var(--header-h);left:0;right:0;background:var(--black-soft);border-bottom:1px solid var(--black-border);flex-direction:column;align-items:flex-start;padding:16px 24px;gap:0;transform:translateY(-100%);opacity:0;pointer-events:none;transition:transform .3s ease,opacity .3s ease;z-index:90}.main-nav.is-open{transform:translateY(0);opacity:1;pointer-events:all}.nav-link{padding:12px 0;width:100%;border-bottom:1px solid var(--black-border);font-size:18px}.nav-link:last-child{border-bottom:none}.nav-link::after{display:none}.hero-title{font-size:clamp(44px,14vw,60px)}.hero-description{font-size:15px}.services-grid{grid-template-columns:1fr}.service-card{padding:24px 20px}.gallery-grid{grid-template-columns:1fr;grid-template-rows:auto}.gallery-item,.gallery-item--wide{grid-column:span 1;aspect-ratio:4/3;height:auto}.contact-whatsapp-btn{font-size:16px;padding:15px 20px;width:100%;justify-content:center}.business-name{font-size:11px!important}.business-tagline{display:none}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 :focus-visible{outline:2px solid var(--red);outline-offset:3px}
-  </style>
+
+.gallery-grid.gallery-grid--one-row{grid-template-rows:240px}
+.service-photo{width:100%;height:170px;object-fit:cover;margin:-32px -28px 24px;width:calc(100% + 56px);max-width:none}
+.gallery-item{display:block;width:100%;padding:0;border:0;text-align:left;color:inherit}
+.gallery-item img{width:100%;height:100%;min-height:220px;object-fit:cover;transition:transform .35s ease,opacity .35s ease}
+.gallery-item:hover img{transform:scale(1.035)}
+.gallery-caption{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;color:#fff;font-size:13px;background:linear-gradient(transparent,rgba(0,0,0,.82));}
+.gallery-modal{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;flex-direction:column;padding:60px 20px 24px}
+.gallery-modal.is-open{display:flex}
+.gallery-modal img{max-width:min(100%,1100px);max-height:78vh;object-fit:contain}
+.gallery-modal p{color:#fff;text-align:center;margin-top:14px;font-size:14px}
+.gallery-modal-close{position:absolute;top:18px;right:22px;background:none;border:0;color:#fff;font-size:42px;line-height:1;cursor:pointer}
+@media(max-width:600px){.gallery-grid.gallery-grid--one-row{grid-template-rows:auto}.service-photo{margin:-24px -20px 20px;width:calc(100% + 40px);height:190px}.gallery-item img{min-height:190px}}
+
+  </style>
 </head>
 <body>
-  <header class="site-header" id="top">
-    <div class="header-inner">
-      <div class="logo-area">
-        <div class="logo-placeholder"><span class="logo-text">STN</span></div>
-        <div class="logo-name">
-          <span class="business-name">Servicios Técnicos Naranjo</span>
-          <span class="business-tagline">Calidad y buen servicio</span>
-        </div>
-      </div>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
-      <nav class="main-nav" id="main-nav">
-        <a href="#inicio" class="nav-link">Inicio</a>
-        <a href="#servicios" class="nav-link">Servicios</a>
-        <a href="#galeria" class="nav-link">Galería</a>
-        <a href="#contacto" class="nav-link">Contacto</a>
-      </nav>
-    </div>
-  </header>
- 
-  <section class="hero" id="inicio">
-    <div class="hero-bg"><div class="hero-overlay"></div><div class="hero-bg-pattern"></div></div>
-    <div class="hero-content">
-      <div class="hero-text">
-        <p class="hero-eyebrow">Taller especializado en motocicletas</p>
-        <h1 class="hero-title">Tu moto<br><span>en buenas manos</span></h1>
-        <p class="hero-description">Atención personalizada, repuestos de calidad y técnicos con experiencia. Llevamos tu motocicleta al punto óptimo para que ruedes con confianza.</p>
-        <a href="https://wa.me/573103723677" class="btn-whatsapp" target="_blank" rel="noopener">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Escríbenos por WhatsApp
-        </a>
-      </div>
-      <div class="hero-visual">
-        <div class="hero-image-frame">
-          <div class="hero-image-placeholder">
-            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M19 7c0-1.1-.9-2-2-2H3c-1.1 0-2 .9-2 2v10h2a3 3 0 0 0 6 0h8a3 3 0 0 0 6 0h2V11l-3-4h-3zM3 7h10v5H3zm7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm9 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>
-            <p>Fotografía principal</p>
-          </div>
-        </div>
-        <div class="hero-badge"><span class="badge-number">+5</span><span class="badge-label">años de experiencia</span></div>
-      </div>
-    </div>
-  </section>
- 
-  <section class="services-section" id="servicios">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Lo que hacemos</h2>
-        <p class="section-subtitle">Soluciones completas para tu motocicleta</p>
-      </div>
-      <div class="services-grid">
-        <div class="service-card"><div class="service-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><div class="service-content"><h3 class="service-name">Mantenimiento general</h3><p class="service-desc">Revisión completa, cambio de aceite, filtros, bujías y ajuste de todos los sistemas. Tu moto lista para el camino.</p></div><div class="service-stripe"></div></div>
-        <div class="service-card"><div class="service-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg></div><div class="service-content"><h3 class="service-name">Frenos</h3><p class="service-desc">Revisión, ajuste y cambio de pastillas, discos y líquido de frenos. Frenada segura en cada situación.</p></div><div class="service-stripe"></div></div>
-        <div class="service-card"><div class="service-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="service-content"><h3 class="service-name">Suspensión</h3><p class="service-desc">Diagnóstico y reparación de horquillas, amortiguadores y piezas de suspensión. Estabilidad y confort de marcha.</p></div><div class="service-stripe"></div></div>
-        <div class="service-card"><div class="service-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="service-content"><h3 class="service-name">Sistema eléctrico</h3><p class="service-desc">Diagnóstico y reparación de instalaciones eléctricas, batería, alternador, luces y sistema de arranque.</p></div><div class="service-stripe"></div></div>
-        <div class="service-card"><div class="service-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="service-content"><h3 class="service-name">Diagnóstico</h3><p class="service-desc">Revisión técnica detallada para identificar fallas, desgastes y puntos de mejora antes de que se conviertan en problemas mayores.</p></div><div class="service-stripe"></div></div>
-      </div>
-    </div>
-  </section>
- 
-  <section class="gallery-section" id="galeria">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Nuestro trabajo</h2>
-        <p class="section-subtitle">Resultados reales, motos bien cuidadas</p>
-      </div>
-      <div class="gallery-grid">
-        <div class="gallery-item"><div class="gallery-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Fotografía 1</p></div></div>
-        <div class="gallery-item gallery-item--wide"><div class="gallery-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Fotografía 2 (destacada)</p></div></div>
-        <div class="gallery-item"><div class="gallery-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Fotografía 3</p></div></div>
-        <div class="gallery-item"><div class="gallery-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Fotografía 4</p></div></div>
-      </div>
-    </div>
-  </section>
- 
-  <section class="contact-section" id="contacto">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Contáctanos</h2>
-        <p class="section-subtitle">Estamos listos para atenderte</p>
-      </div>
-      <div class="contact-layout">
-        <div class="contact-main">
-          <a href="https://wa.me/573103723677" class="contact-whatsapp-btn" target="_blank" rel="noopener">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Escríbenos: 310 372 3677
-          </a>
-          <div class="contact-cards">
-            <div class="contact-card"><div class="contact-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><p class="contact-card-label">Horario</p><p class="contact-card-value">Próximamente confirmado</p></div></div>
-            <div class="contact-card"><div class="contact-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><p class="contact-card-label">Dirección</p><p class="contact-card-value">Próximamente confirmada</p></div></div>
-          </div>
-        </div>
-        <div class="contact-social">
-          <p class="social-label">Síguenos</p>
-          <div class="social-links">
-            <a href="https://www.facebook.com/share/19rcMe8Co4/?mibextid=wwXIfr" class="social-link social-link--facebook" target="_blank" rel="noopener">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-              <span>Facebook</span>
-            </a>
-            <span class="social-link social-link--inactive" style="opacity:.45;cursor:default;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-              <span>Instagram <small style="font-size:11px;color:var(--grey-mid);">— próximamente</small></span>
-            </span>
-            <span class="social-link social-link--inactive" style="opacity:.45;cursor:default;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.26 8.26 0 0 0 4.83 1.55V6.86a4.85 4.85 0 0 1-1.06-.17z"/></svg>
-              <span>TikTok <small style="font-size:11px;color:var(--grey-mid);">— próximamente</small></span>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
- 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <span class="footer-name">Servicios Técnicos Naranjo</span>
-        <span class="footer-tagline">Calidad y buen servicio</span>
-      </div>
-      <div class="footer-links">
-        <a href="https://www.facebook.com/share/19rcMe8Co4/?mibextid=wwXIfr" target="_blank" rel="noopener" class="footer-social">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
-      </div>
-      <p class="footer-copy">© 2024 Servicios Técnicos Naranjo. Todos los derechos reservados.</p>
-    </div>
-  </footer>
- 
-  <script>
-    const toggle = document.getElementById('menu-toggle');
-    const nav = document.getElementById('main-nav');
-    if(toggle && nav){
-      toggle.addEventListener('click',()=>{const o=nav.classList.toggle('is-open');toggle.setAttribute('aria-expanded',o)});
-      nav.querySelectorAll('.nav-link').forEach(l=>l.addEventListener('click',()=>{nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false')}));
-      document.addEventListener('click',e=>{if(!toggle.contains(e.target)&&!nav.contains(e.target)){nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false')}});
-    }
-    const header=document.querySelector('.site-header');
-    if(header)window.addEventListener('scroll',()=>{header.style.boxShadow=window.scrollY>10?'0 2px 20px rgba(0,0,0,.5)':'none'},{passive:true});
-  </script>
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <div class="logo-area">
+        <div class="logo-placeholder"><span class="logo-text">STN</span></div>
+        <div class="logo-name">
+          <span class="business-name">Servicios Técnicos Naranjo</span>
+          <span class="business-tagline">Calidad y buen servicio</span>
+        </div>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#inicio" class="nav-link">Inicio</a>
+        <a href="#servicios" class="nav-link">Servicios</a>
+        <a href="#galeria" class="nav-link">Galería</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="hero-bg"><div class="hero-overlay"></div><div class="hero-bg-pattern"></div></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-eyebrow">Taller especializado en motocicletas</p>
+        <h1 class="hero-title" id="hero-title">Tu moto<br><span>en buenas manos</span></h1>
+        <p class="hero-description" id="hero-description">Atención personalizada, repuestos de calidad y técnicos con experiencia. Llevamos tu motocicleta al punto óptimo para que ruedes con confianza.</p>
+        <a href="https://wa.me/573103723677" class="btn-whatsapp" id="hero-whatsapp" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Escríbenos por WhatsApp
+        </a>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-image-frame">
+          <div class="hero-image-placeholder">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M19 7c0-1.1-.9-2-2-2H3c-1.1 0-2 .9-2 2v10h2a3 3 0 0 0 6 0h8a3 3 0 0 0 6 0h2V11l-3-4h-3zM3 7h10v5H3zm7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm9 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>
+            <p>Fotografía principal</p>
+          </div>
+        </div>
+        <div class="hero-badge"><span class="badge-number">+5</span><span class="badge-label">años de experiencia</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-section" id="servicios">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Lo que hacemos</h2>
+        <p class="section-subtitle">Soluciones completas para tu motocicleta</p>
+      </div>
+      <div class="services-grid" id="services-grid">
+        <div class="service-card"><div class="service-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><div class="service-content"><h3 class="service-name">Mantenimiento general</h3><p class="service-desc">Revisión completa, cambio de aceite, filtros, bujías y ajuste de todos los sistemas. Tu moto lista para el camino.</p></div><div class="service-stripe"></div></div>
+        <div class="service-card"><div class="service-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg></div><div class="service-content"><h3 class="service-name">Frenos</h3><p class="service-desc">Revisión, ajuste y cambio de pastillas, discos y líquido de frenos. Frenada segura en cada situación.</p></div><div class="service-stripe"></div></div>
+        <div class="service-card"><div class="service-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="service-content"><h3 class="service-name">Suspensión</h3><p class="service-desc">Diagnóstico y reparación de horquillas, amortiguadores y piezas de suspensión. Estabilidad y confort de marcha.</p></div><div class="service-stripe"></div></div>
+        <div class="service-card"><div class="service-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="service-content"><h3 class="service-name">Sistema eléctrico</h3><p class="service-desc">Diagnóstico y reparación de instalaciones eléctricas, batería, alternador, luces y sistema de arranque.</p></div><div class="service-stripe"></div></div>
+        <div class="service-card"><div class="service-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="service-content"><h3 class="service-name">Diagnóstico</h3><p class="service-desc">Revisión técnica detallada para identificar fallas, desgastes y puntos de mejora antes de que se conviertan en problemas mayores.</p></div><div class="service-stripe"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-section" id="galeria">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Nuestro trabajo</h2>
+        <p class="section-subtitle">Resultados reales, motos bien cuidadas</p>
+      </div>
+      <div class="gallery-grid" id="gallery-grid">
+        <div class="gallery-item"><div class="gallery-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Fotografía 1</p></div></div>
+        <div class="gallery-item gallery-item--wide"><div class="gallery-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Fotografía 2 (destacada)</p></div></div>
+        <div class="gallery-item"><div class="gallery-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Fotografía 3</p></div></div>
+        <div class="gallery-item"><div class="gallery-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Fotografía 4</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contacto">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Contáctanos</h2>
+        <p class="section-subtitle">Estamos listos para atenderte</p>
+      </div>
+      <div class="contact-layout">
+        <div class="contact-main">
+          <a href="https://wa.me/573103723677" class="contact-whatsapp-btn" id="contact-whatsapp" target="_blank" rel="noopener">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Escríbenos: 310 372 3677
+          </a>
+          <div class="contact-cards">
+            <div class="contact-card"><div class="contact-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><p class="contact-card-label">Horario</p><p class="contact-card-value" id="contact-schedule">Próximamente confirmado</p></div></div>
+            <div class="contact-card"><div class="contact-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><p class="contact-card-label">Dirección</p><p class="contact-card-value" id="contact-address">Próximamente confirmada</p></div></div>
+          </div>
+        </div>
+        <div class="contact-social">
+          <p class="social-label">Síguenos</p>
+          <div class="social-links" id="social-links">
+            <a href="https://www.facebook.com/share/19rcMe8Co4/?mibextid=wwXIfr" class="social-link social-link--facebook" target="_blank" rel="noopener">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              <span>Facebook</span>
+            </a>
+            <span class="social-link social-link--inactive" style="opacity:.45;cursor:default;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              <span>Instagram <small style="font-size:11px;color:var(--grey-mid);">— próximamente</small></span>
+            </span>
+            <span class="social-link social-link--inactive" style="opacity:.45;cursor:default;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.26 8.26 0 0 0 4.83 1.55V6.86a4.85 4.85 0 0 1-1.06-.17z"/></svg>
+              <span>TikTok <small style="font-size:11px;color:var(--grey-mid);">— próximamente</small></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-name">Servicios Técnicos Naranjo</span>
+        <span class="footer-tagline">Calidad y buen servicio</span>
+      </div>
+      <div class="footer-links" id="footer-social-links">
+        <a href="https://www.facebook.com/share/19rcMe8Co4/?mibextid=wwXIfr" target="_blank" rel="noopener" class="footer-social">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+      <p class="footer-copy">© 2024 Servicios Técnicos Naranjo. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = 'https://peyqwmwrqrkexhesauyl.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_O3jpxUZzh96uwJU4SleMxA_pxyt7-WH';
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('main-nav');
+    if(toggle && nav){
+      toggle.addEventListener('click',()=>{const o=nav.classList.toggle('is-open');toggle.setAttribute('aria-expanded',o)});
+      nav.querySelectorAll('.nav-link').forEach(l=>l.addEventListener('click',()=>{nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false')}));
+      document.addEventListener('click',e=>{if(!toggle.contains(e.target)&&!nav.contains(e.target)){nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false')}});
+    }
+    const header=document.querySelector('.site-header');
+    if(header)window.addEventListener('scroll',()=>{header.style.boxShadow=window.scrollY>10?'0 2px 20px rgba(0,0,0,.5)':'none'},{passive:true});
+
+    const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const safeExternalURL = value => { try { const u=new URL(String(value||'').trim()); return ['http:','https:'].includes(u.protocol) ? u.href : ''; } catch { return ''; } };
+    const phoneDigits = value => String(value || '').replace(/\D/g, '');
+    const whatsappURL = value => {
+      let n = phoneDigits(value);
+      if (!n) return '';
+      if (!n.startsWith('57')) n = '57' + n;
+      return 'https://wa.me/' + n;
+    };
+    const setText = (id, value) => { const el=document.getElementById(id); if(el && value != null && String(value).trim()) el.textContent=String(value); };
+
+    async function loadConfiguration(){
+      const {data,error}=await supabaseClient.from('config').select('hero_title,hero_description,whatsapp,address,schedule,maps_url').eq('id',1).maybeSingle();
+      if(error) throw error;
+      if(!data) return;
+      if(data.hero_title){
+        const title=document.getElementById('hero-title');
+        const raw=String(data.hero_title).trim();
+        if(title){
+          const parts=raw.split(/\s*\|\s*|\n/).filter(Boolean);
+          if(parts.length>1) title.innerHTML=escapeHTML(parts[0])+'<br><span>'+escapeHTML(parts.slice(1).join(' '))+'</span>';
+          else title.textContent=raw;
+        }
+      }
+      setText('hero-description',data.hero_description);
+      const wa=whatsappURL(data.whatsapp);
+      if(wa){
+        const a=document.getElementById('hero-whatsapp'); const b=document.getElementById('contact-whatsapp');
+        if(a) a.href=wa; if(b){b.href=wa; b.lastChild.textContent=' Escríbenos: '+String(data.whatsapp).trim();}
+      }
+      if(data.schedule) setText('contact-schedule',data.schedule);
+      if(data.address){
+        const target=document.getElementById('contact-address');
+        if(target){
+          const mapsURL=safeExternalURL(data.maps_url);
+          if(mapsURL){ target.innerHTML='<a href="'+escapeHTML(mapsURL)+'" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px">'+escapeHTML(data.address)+'</a>'; }
+          else target.textContent=data.address;
+        }
+      }
+    }
+
+    const wrenchIcon = '<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>';
+    async function loadServices(){
+      const grid=document.getElementById('services-grid');
+      const {data,error}=await supabaseClient.from('services').select('id,name,description,image_url,sort_order,active').eq('active',true).order('sort_order',{ascending:true});
+      if(error) throw error;
+      if(!grid) return;
+      if(!data || !data.length){ grid.innerHTML='<p class="service-desc" style="padding:24px">Próximamente encontrarás aquí nuestros servicios.</p>'; return; }
+      grid.innerHTML=data.map(item=>'<article class="service-card">'+(item.image_url?'<img class="service-photo" src="'+escapeHTML(item.image_url)+'" alt="'+escapeHTML(item.name)+'" loading="lazy">':'<div class="service-icon">'+wrenchIcon+'</div>')+'<div class="service-content"><h3 class="service-name">'+escapeHTML(item.name)+'</h3><p class="service-desc">'+escapeHTML(item.description)+'</p></div><div class="service-stripe"></div></article>').join('');
+    }
+
+    let galleryTimer=null;
+    let galleryItems=[];
+    let galleryOffset=0;
+    function showGalleryBatch(){
+      const grid=document.getElementById('gallery-grid');
+      if(!grid || !galleryItems.length) return;
+      const visibleCount=Math.min(4,galleryItems.length);
+      grid.classList.toggle('gallery-grid--one-row', visibleCount <= 3);
+      const batch=[];
+      for(let i=0;i<visibleCount;i++) batch.push(galleryItems[(galleryOffset+i)%galleryItems.length]);
+      grid.innerHTML=batch.map((item,index)=>'<button type="button" class="gallery-item '+(index===1?'gallery-item--wide':'')+'" data-gallery-index="'+((galleryOffset+index)%galleryItems.length)+'" aria-label="Ampliar fotografía">'+
+        '<img src="'+escapeHTML(item.image_url)+'" alt="'+escapeHTML(item.description || 'Trabajo realizado por Servicios Técnicos Naranjo')+'" loading="lazy">'+
+        (item.description?'<span class="gallery-caption">'+escapeHTML(item.description)+'</span>':'')+'</button>').join('');
+      grid.querySelectorAll('[data-gallery-index]').forEach(button=>button.addEventListener('click',()=>openGalleryModal(Number(button.dataset.galleryIndex))));
+    }
+    async function loadGallery(){
+      const grid=document.getElementById('gallery-grid');
+      const {data,error}=await supabaseClient.from('gallery').select('id,image_url,description,sort_order').order('sort_order',{ascending:true});
+      if(error) throw error;
+      galleryItems=(data||[]).filter(item=>item.image_url);
+      if(!grid) return;
+      if(!galleryItems.length){ grid.innerHTML='<div class="gallery-placeholder"><p>Próximamente encontrarás fotografías de nuestros trabajos.</p></div>'; return; }
+      galleryOffset=0; showGalleryBatch();
+      if(galleryTimer) clearInterval(galleryTimer);
+      if(galleryItems.length>4){ galleryTimer=setInterval(()=>{galleryOffset=(galleryOffset+4)%galleryItems.length; showGalleryBatch();},5000); }
+    }
+    function openGalleryModal(index){
+      const item=galleryItems[index]; if(!item) return;
+      let modal=document.getElementById('gallery-modal');
+      if(!modal){
+        modal=document.createElement('div'); modal.id='gallery-modal'; modal.className='gallery-modal';
+        modal.innerHTML='<button type="button" class="gallery-modal-close" aria-label="Cerrar">×</button><img alt=""><p></p>';
+        document.body.appendChild(modal);
+        modal.addEventListener('click',e=>{if(e.target===modal || e.target.classList.contains('gallery-modal-close')) modal.classList.remove('is-open');});
+        document.addEventListener('keydown',e=>{if(e.key==='Escape') modal.classList.remove('is-open');});
+      }
+      modal.querySelector('img').src=item.image_url;
+      modal.querySelector('img').alt=item.description||'Fotografía ampliada';
+      modal.querySelector('p').textContent=item.description||'';
+      modal.classList.add('is-open');
+    }
+
+    const socialInfo={
+      facebook:{label:'Facebook',className:'social-link--facebook',icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>'},
+      instagram:{label:'Instagram',className:'',icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>'},
+      tiktok:{label:'TikTok',className:'',icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.26 8.26 0 0 0 4.83 1.55V6.86a4.85 4.85 0 0 1-1.06-.17z"/></svg>'},
+      youtube:{label:'YouTube',className:'',icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6z"/></svg>'}
+    };
+    async function loadSocialLinks(){
+      const {data,error}=await supabaseClient.from('social_links').select('facebook,instagram,tiktok,youtube,facebook_active,instagram_active,tiktok_active,youtube_active').eq('id',1).maybeSingle();
+      if(error) throw error;
+      const contact=document.getElementById('social-links'); const footer=document.getElementById('footer-social-links');
+      if(!contact || !footer) return;
+      contact.innerHTML=''; footer.innerHTML='';
+      if(!data) return;
+      Object.keys(socialInfo).forEach(key=>{
+        const info=socialInfo[key]; const url=safeExternalURL(data[key]);
+        if(!url || data[key+'_active']===false) return;
+        const a=document.createElement('a'); a.href=url; a.target='_blank'; a.rel='noopener noreferrer'; a.className='social-link '+info.className; a.innerHTML=info.icon+'<span>'+info.label+'</span>'; contact.appendChild(a);
+        const f=document.createElement('a'); f.href=url; f.target='_blank'; f.rel='noopener noreferrer'; f.className='footer-social'; f.setAttribute('aria-label',info.label); f.innerHTML=info.icon.replace('width="22" height="22"','width="18" height="18"'); footer.appendChild(f);
+      });
+      if(!contact.children.length){ const label=document.querySelector('.social-label'); if(label) label.style.display='none'; }
+    }
+
+    async function initializePublicPage(){
+      const tasks=[['configuración',loadConfiguration],['servicios',loadServices],['galería',loadGallery],['redes sociales',loadSocialLinks]];
+      for(const [name,fn] of tasks){
+        try{ await fn(); }
+        catch(error){ console.error('No se pudo cargar '+name+':',error); }
+      }
+    }
+    initializePublicPage();
+  </script>
 </body>
 </html>
