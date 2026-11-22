@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Servicios Técnicos Naranjo — Calidad y buen servicio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+:root{--black:#0a0a0a;--black-soft:#111111;--black-card:#161616;--black-border:#242424;--grey-dark:#2a2a2a;--grey-mid:#666666;--grey-light:#aaaaaa;--white:#ffffff;--white-off:#f0f0f0;--red:#cc1a1a;--red-bright:#e82020;--font-display:'Barlow Condensed',sans-serif;--font-body:'Barlow',sans-serif;--header-h:64px;--section-pad:clamp(60px,8vw,100px);--container-w:1140px;--radius:4px;--transition:0.25s ease;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:var(--font-body);background:var(--black);color:var(--white);line-height:1.6;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.container{width:100%;max-width:var(--container-w);margin:0 auto;padding:0 clamp(16px,4vw,48px)}
+.site-header{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(10,10,10,.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--black-border);z-index:100}
+.header-inner{max-width:var(--container-w);margin:0 auto;padding:0 clamp(16px,4vw,48px);height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo-area{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.logo-placeholder{width:40px;height:40px;background:var(--red);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-text{font-family:var(--font-display);font-weight:900;font-size:15px;color:var(--white);letter-spacing:1px}
+.logo-name{display:flex;flex-direction:column;line-height:1.2}
+.business-name{font-family:var(--font-display);font-weight:700;font-size:clamp(13px,2vw,16px);color:var(--white);letter-spacing:.5px}
+.business-tagline{font-size:11px;color:var(--grey-mid);letter-spacing:.5px}
+.main-nav{display:flex;align-items:center;gap:clamp(16px,3vw,36px)}
+.nav-link{font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--grey-light);letter-spacing:.5px;text-transform:uppercase;position:relative;padding-bottom:2px;transition:color var(--transition)}
+.nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--red);transition:width var(--transition)}
+.nav-link:hover{color:var(--white)}
+.nav-link:hover::after{width:100%}
+.menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.menu-toggle span{display:block;width:24px;height:2px;background:var(--white);transition:var(--transition)}
+.hero{min-height:100svh;padding-top:var(--header-h);position:relative;display:flex;align-items:center}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,var(--black) 0%,var(--black-soft) 50%,#1a0505 100%)}
+.hero-bg-pattern{position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(45deg,var(--white) 0,var(--white) 1px,transparent 0,transparent 50%);background-size:20px 20px}
+.hero-content{position:relative;z-index:1;width:100%;max-width:var(--container-w);margin:0 auto;padding:clamp(32px,6vw,80px) clamp(16px,4vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px);align-items:center}
+.hero-eyebrow{font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.hero-title{font-family:var(--font-display);font-weight:900;font-size:clamp(48px,7vw,88px);line-height:.95;color:var(--white);letter-spacing:-1px;margin-bottom:24px}
+.hero-title span{color:var(--red);display:block}
+.hero-description{font-size:clamp(15px,1.5vw,17px);color:var(--grey-light);line-height:1.7;max-width:480px;margin-bottom:36px}
+.btn-whatsapp{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:var(--white);font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.5px;padding:14px 28px;border-radius:var(--radius);transition:background var(--transition),transform var(--transition)}
+.btn-whatsapp:hover{background:var(--red-bright);transform:translateY(-2px)}
+.hero-visual{position:relative}
+.hero-image-frame{width:100%;aspect-ratio:4/5;background:var(--black-card);border:1px solid var(--black-border);border-radius:2px;overflow:hidden;position:relative}
+.hero-image-frame::before{content:'';position:absolute;top:0;left:0;width:4px;height:60px;background:var(--red)}
+.hero-image-frame::after{content:'';position:absolute;bottom:0;right:0;width:60px;height:4px;background:var(--red)}
+.hero-image-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--black-border)}
+.hero-image-placeholder p{font-size:13px;color:var(--grey-dark)}
+.hero-badge{position:absolute;bottom:-16px;left:-16px;background:var(--red);padding:16px 20px;display:flex;flex-direction:column;align-items:center;border-radius:2px}
+.badge-number{font-family:var(--font-display);font-weight:900;font-size:28px;line-height:1;color:var(--white)}
+.badge-label{font-size:11px;color:rgba(255,255,255,.8);text-align:center;line-height:1.3;max-width:60px}
+.services-section{padding:var(--section-pad) 0;background:var(--black-soft);border-top:1px solid var(--black-border)}
+.section-header{text-align:left;margin-bottom:clamp(32px,5vw,60px)}
+.section-title{font-family:var(--font-display);font-weight:900;font-size:clamp(32px,5vw,52px);color:var(--white);line-height:1;margin-bottom:10px}
+.section-title::after{content:'.';color:var(--red)}
+.section-subtitle{font-size:15px;color:var(--grey-mid)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--black-border);border:1px solid var(--black-border)}
+.service-card{background:var(--black-card);padding:32px 28px;position:relative;transition:background var(--transition);overflow:hidden}
+.service-card:hover{background:var(--grey-dark)}
+.service-card:hover .service-stripe{width:100%}
+.service-stripe{position:absolute;bottom:0;left:0;height:3px;width:0;background:var(--red);transition:width .4s ease}
+.service-icon{color:var(--red);margin-bottom:20px}
+.service-name{font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--white);margin-bottom:10px;letter-spacing:.3px}
+.service-desc{font-size:14px;color:var(--grey-mid);line-height:1.65}
+.gallery-section{padding:var(--section-pad) 0;background:var(--black);border-top:1px solid var(--black-border)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:240px 240px;gap:2px}
+.gallery-item{background:var(--black-card);overflow:hidden;position:relative;cursor:pointer}
+.gallery-item--wide{grid-column:span 2}
+.gallery-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--black-border)}
+.gallery-placeholder p{font-size:12px;color:var(--grey-dark)}
+.gallery-item:hover .gallery-placeholder{color:var(--grey-dark)}
+.contact-section{padding:var(--section-pad) 0;background:var(--black-soft);border-top:1px solid var(--black-border)}
+.contact-layout{display:grid;grid-template-columns:1fr auto;gap:clamp(32px,5vw,80px);align-items:start}
+.contact-whatsapp-btn{display:inline-flex;align-items:center;gap:12px;background:#25D366;color:var(--white);font-family:var(--font-display);font-weight:700;font-size:20px;padding:18px 32px;border-radius:var(--radius);margin-bottom:32px;transition:opacity var(--transition),transform var(--transition);letter-spacing:.3px}
+.contact-whatsapp-btn:hover{opacity:.9;transform:translateY(-2px)}
+.contact-cards{display:flex;flex-direction:column;gap:16px}
+.contact-card{display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:var(--black-card);border:1px solid var(--black-border);border-radius:var(--radius)}
+.contact-card-icon{color:var(--red);flex-shrink:0;margin-top:2px}
+.contact-card-label{font-size:11px;color:var(--grey-mid);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;font-family:var(--font-display);font-weight:600}
+.contact-card-value{font-size:15px;color:var(--white-off)}
+.contact-social{padding-top:4px}
+.social-label{font-family:var(--font-display);font-size:12px;font-weight:600;color:var(--grey-mid);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
+.social-links{display:flex;flex-direction:column;gap:10px}
+.social-link{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--grey-light);padding:10px 16px;border:1px solid var(--black-border);border-radius:var(--radius);transition:color var(--transition),border-color var(--transition)}
+.social-link:hover{color:var(--white);border-color:var(--grey-dark)}
+.social-link--facebook:hover{color:#1877F2}
+.site-footer{background:var(--black);border-top:1px solid var(--black-border);padding:32px 0}
+.footer-inner{max-width:var(--container-w);margin:0 auto;padding:0 clamp(16px,4vw,48px);display:flex;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-brand{display:flex;flex-direction:column;flex:1}
+.footer-name{font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--white)}
+.footer-tagline{font-size:12px;color:var(--grey-mid)}
+.footer-links{display:flex;gap:12px}
+.footer-social{width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--grey-mid);border:1px solid var(--black-border);border-radius:2px;transition:color var(--transition),border-color var(--transition)}
+.footer-social:hover{color:var(--white);border-color:var(--grey-dark)}
+.footer-copy{width:100%;font-size:12px;color:var(--grey-dark)}
+@media(max-width:900px){.hero-content{grid-template-columns:1fr}.hero-visual{display:none}.hero-title{font-size:clamp(44px,10vw,72px)}.contact-layout{grid-template-columns:1fr}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.gallery-item--wide{grid-column:span 2}}
+@media(max-width:600px){:root{--header-h:56px}.menu-toggle{display:flex}.main-nav{position:fixed;top:var(--header-h);left:0;right:0;background:var(--black-soft);border-bottom:1px solid var(--black-border);flex-direction:column;align-items:flex-start;padding:16px 24px;gap:0;transform:translateY(-100%);opacity:0;pointer-events:none;transition:transform .3s ease,opacity .3s ease;z-index:90}.main-nav.is-open{transform:translateY(0);opacity:1;pointer-events:all}.nav-link{padding:12px 0;width:100%;border-bottom:1px solid var(--black-border);font-size:18px}.nav-link:last-child{border-bottom:none}.nav-link::after{display:none}.hero-title{font-size:clamp(44px,14vw,60px)}.hero-description{font-size:15px}.services-grid{grid-template-columns:1fr}.service-card{padding:24px 20px}.gallery-grid{grid-template-columns:1fr;grid-template-rows:auto}.gallery-item,.gallery-item--wide{grid-column:span 1;aspect-ratio:4/3;height:auto}.contact-whatsapp-btn{font-size:16px;padding:15px 20px;width:100%;justify-content:center}.business-name{font-size:11px!important}.business-tagline{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <div class="logo-area">
+        <div class="logo-placeholder"><span class="logo-text">STN</span></div>
+        <div class="logo-name">
+          <span class="business-name">Servicios Técnicos Naranjo</span>
+          <span class="business-tagline">Calidad y buen servicio</span>
+        </div>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#inicio" class="nav-link">Inicio</a>
+        <a href="#servicios" class="nav-link">Servicios</a>
+        <a href="#galeria" class="nav-link">Galería</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+      </nav>
+    </div>
+  </header>
+ 
+  <section class="hero" id="inicio">
+    <div class="hero-bg"><div class="hero-overlay"></div><div class="hero-bg-pattern"></div></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-eyebrow">Taller especializado en motocicletas</p>
+        <h1 class="hero-title">Tu moto<br><span>en buenas manos</span></h1>
+        <p class="hero-description">Atención personalizada, repuestos de calidad y técnicos con experiencia. Llevamos tu motocicleta al punto óptimo para que ruedes con confianza.</p>
+        <a href="https://wa.me/573103723677" class="btn-whatsapp" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Escríbenos por WhatsApp
+        </a>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-image-frame">
+          <div class="hero-image-placeholder">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M19 7c0-1.1-.9-2-2-2H3c-1.1 0-2 .9-2 2v10h2a3 3 0 0 0 6 0h8a3 3 0 0 0 6 0h2V11l-3-4h-3zM3 7h10v5H3zm7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm9 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>
+            <p>Fotografía principal</p>
+          </div>
+        </div>
+        <div class="hero-badge"><span class="badge-number">+5</span><span class="badge-label">años de experiencia</span></div>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="services-section" id="servicios">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Lo que hacemos</h2>
+        <p class="section-subtitle">Soluciones completas para tu motocicleta</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card"><div class="service-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><div class="service-content"><h3 class="service-name">Mantenimiento general</h3><p class="service-desc">Revisión completa, cambio de aceite, filtros, bujías y ajuste de todos los sistemas. Tu moto lista para el camino.</p></div><div class="service-stripe"></div></div>
+        <div class="service-card"><div class="service-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg></div><div class="service-content"><h3 class="service-name">Frenos</h3><p class="service-desc">Revisión, ajuste y cambio de pastillas, discos y líquido de frenos. Frenada segura en cada situación.</p></div><div class="service-stripe"></div></div>
+        <div class="service-card"><div class="service-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="service-content"><h3 class="service-name">Suspensión</h3><p class="service-desc">Diagnóstico y reparación de horquillas, amortiguadores y piezas de suspensión. Estabilidad y confort de marcha.</p></div><div class="service-stripe"></div></div>
+        <div class="service-card"><div class="service-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="service-content"><h3 class="service-name">Sistema eléctrico</h3><p class="service-desc">Diagnóstico y reparación de instalaciones eléctricas, batería, alternador, luces y sistema de arranque.</p></div><div class="service-stripe"></div></div>
+        <div class="service-card"><div class="service-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="service-content"><h3 class="service-name">Diagnóstico</h3><p class="service-desc">Revisión técnica detallada para identificar fallas, desgastes y puntos de mejora antes de que se conviertan en problemas mayores.</p></div><div class="service-stripe"></div></div>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="gallery-section" id="galeria">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Nuestro trabajo</h2>
+        <p class="section-subtitle">Resultados reales, motos bien cuidadas</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item"><div class="gallery-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Fotografía 1</p></div></div>
+        <div class="gallery-item gallery-item--wide"><div class="gallery-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Fotografía 2 (destacada)</p></div></div>
+        <div class="gallery-item"><div class="gallery-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Fotografía 3</p></div></div>
+        <div class="gallery-item"><div class="gallery-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>Fotografía 4</p></div></div>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="contact-section" id="contacto">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Contáctanos</h2>
+        <p class="section-subtitle">Estamos listos para atenderte</p>
+      </div>
+      <div class="contact-layout">
+        <div class="contact-main">
+          <a href="https://wa.me/573103723677" class="contact-whatsapp-btn" target="_blank" rel="noopener">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Escríbenos: 310 372 3677
+          </a>
+          <div class="contact-cards">
+            <div class="contact-card"><div class="contact-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><p class="contact-card-label">Horario</p><p class="contact-card-value">Próximamente confirmado</p></div></div>
+            <div class="contact-card"><div class="contact-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><p class="contact-card-label">Dirección</p><p class="contact-card-value">Próximamente confirmada</p></div></div>
+          </div>
+        </div>
+        <div class="contact-social">
+          <p class="social-label">Síguenos</p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/share/19rcMe8Co4/?mibextid=wwXIfr" class="social-link social-link--facebook" target="_blank" rel="noopener">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              <span>Facebook</span>
+            </a>
+            <span class="social-link social-link--inactive" style="opacity:.45;cursor:default;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              <span>Instagram <small style="font-size:11px;color:var(--grey-mid);">— próximamente</small></span>
+            </span>
+            <span class="social-link social-link--inactive" style="opacity:.45;cursor:default;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.26 8.26 0 0 0 4.83 1.55V6.86a4.85 4.85 0 0 1-1.06-.17z"/></svg>
+              <span>TikTok <small style="font-size:11px;color:var(--grey-mid);">— próximamente</small></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-name">Servicios Técnicos Naranjo</span>
+        <span class="footer-tagline">Calidad y buen servicio</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://www.facebook.com/share/19rcMe8Co4/?mibextid=wwXIfr" target="_blank" rel="noopener" class="footer-social">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+      <p class="footer-copy">© 2024 Servicios Técnicos Naranjo. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+ 
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('main-nav');
+    if(toggle && nav){
+      toggle.addEventListener('click',()=>{const o=nav.classList.toggle('is-open');toggle.setAttribute('aria-expanded',o)});
+      nav.querySelectorAll('.nav-link').forEach(l=>l.addEventListener('click',()=>{nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false')}));
+      document.addEventListener('click',e=>{if(!toggle.contains(e.target)&&!nav.contains(e.target)){nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false')}});
+    }
+    const header=document.querySelector('.site-header');
+    if(header)window.addEventListener('scroll',()=>{header.style.boxShadow=window.scrollY>10?'0 2px 20px rgba(0,0,0,.5)':'none'},{passive:true});
+  </script>
+</body>
+</html>
