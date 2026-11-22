@@ -5,14 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0b0b0b">
 <title>Administración — Servicios Técnicos Naranjo</title>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-:root {
+:root{
   --bg:#0b0b0b;
   --surface:#151515;
-  --surface2:#202020;
   --border:#303030;
   --red:#e50914;
   --white:#fff;
@@ -27,9 +25,6 @@ body{
 }
 button,input,textarea{font:inherit}
 button{cursor:pointer}
-
-/* LOGIN */
-
 .login-container{
   min-height:100vh;
   min-height:100dvh;
@@ -64,9 +59,6 @@ button{cursor:pointer}
   letter-spacing:1.5px;text-transform:uppercase;
 }
 .login-title{text-align:center;font-size:21px;margin-bottom:25px}
-
-/* FORMULARIOS */
-
 .form-group{margin-bottom:20px}
 label{
   display:block;margin-bottom:9px;
@@ -91,9 +83,7 @@ input:focus,textarea:focus{
   border:0;border-radius:8px;
   background:var(--red);color:white;
   font-weight:700;font-size:15px;
-  transition:background .2s;
 }
-.primary-button:hover{background:#bd0710}
 .primary-button:disabled{opacity:.6;cursor:wait}
 .error,.success,.notice{
   display:none;padding:13px;border-radius:8px;
@@ -111,9 +101,6 @@ input:focus,textarea:focus{
   border-top:1px solid var(--border);
   text-align:center;color:#777;font-size:12px;line-height:1.6;
 }
-
-/* PANEL */
-
 #adminPanel{display:none;min-height:100vh}
 .admin-header{
   position:sticky;top:0;z-index:10;
@@ -132,7 +119,6 @@ input:focus,textarea:focus{
   border:1px solid #3b3b3b;border-radius:7px;
   font-size:13px;font-weight:600;
 }
-.logout-btn:hover{background:#3a3a3a}
 .dashboard{
   width:100%;max-width:1150px;
   margin:0 auto;padding:35px 22px 60px;
@@ -173,9 +159,6 @@ input:focus,textarea:focus{
   margin-top:40px;padding-top:20px;
   color:#777;font-size:12px;text-align:center;
 }
-
-/* MODULO CONFIGURACION */
-
 .module{display:none}
 .module-top{
   display:flex;align-items:center;gap:15px;
@@ -186,7 +169,6 @@ input:focus,textarea:focus{
   border:1px solid #3a3a3a;color:white;
   border-radius:8px;padding:11px 15px;
 }
-.back-button:hover{background:#333}
 .module-title h2{font-size:23px;margin-bottom:5px}
 .module-title p{font-size:13px;color:var(--muted);line-height:1.4}
 .module-box{
@@ -207,14 +189,10 @@ input:focus,textarea:focus{
   display:block;color:#858585;
   font-size:11px;margin-top:7px;line-height:1.5;
 }
-.save-row{
-  display:flex;justify-content:flex-end;
-  margin-top:10px;
-}
+.save-row{display:flex;justify-content:flex-end;margin-top:10px}
 .save-button{width:auto;min-width:190px;padding:0 22px}
 #configStatus{margin-top:18px;margin-bottom:0}
 #configStatus:empty{display:none}
-
 @media(max-width:600px){
   .login-box{padding:30px 22px}
   .admin-header{padding:13px 15px}
@@ -238,42 +216,27 @@ input:focus,textarea:focus{
 
 <body>
 
-<!-- INICIO DE SESION -->
-
 <div id="loginContainer" class="login-container">
   <div class="login-box">
-
     <div class="logo">
       <h1>Servicios Técnicos <span>Naranjo</span></h1>
       <div class="logo-mark"></div>
       <p>Panel de administración</p>
     </div>
-
     <h2 class="login-title">Iniciar sesión</h2>
-
     <div id="errorMessage" class="error"></div>
     <div id="successMessage" class="success"></div>
-
     <form id="loginForm">
       <div class="form-group">
         <label for="email">Correo electrónico</label>
-        <input type="email" id="email"
-          placeholder="Correo del administrador"
-          autocomplete="email" required>
+        <input type="email" id="email" placeholder="Correo del administrador" autocomplete="email" required>
       </div>
-
       <div class="form-group">
         <label for="password">Contraseña</label>
-        <input type="password" id="password"
-          placeholder="Ingresa tu contraseña"
-          autocomplete="current-password" required>
+        <input type="password" id="password" placeholder="Ingresa tu contraseña" autocomplete="current-password" required>
       </div>
-
-      <button type="submit" id="loginButton" class="primary-button">
-        Iniciar sesión
-      </button>
+      <button type="submit" id="loginButton" class="primary-button">Iniciar sesión</button>
     </form>
-
     <div class="login-footer">
       Acceso exclusivo para administradores<br>
       Servicios Técnicos Naranjo
@@ -281,11 +244,7 @@ input:focus,textarea:focus{
   </div>
 </div>
 
-
-<!-- PANEL ADMINISTRATIVO -->
-
 <div id="adminPanel">
-
   <header class="admin-header">
     <div class="brand">
       <h1>Servicios Técnicos <span>Naranjo</span></h1>
@@ -296,10 +255,7 @@ input:focus,textarea:focus{
 
   <main class="dashboard">
 
-    <!-- INICIO DEL PANEL -->
-
     <section id="homeSection">
-
       <div class="section-heading">
         <h2>Panel de administración</h2>
         <p>Gestiona la información de tu negocio desde un solo lugar.</p>
@@ -307,14 +263,10 @@ input:focus,textarea:focus{
 
       <section class="welcome">
         <h2>¡Bienvenido!</h2>
-        <p>
-          Desde este panel podrás administrar los contenidos de
-          Servicios Técnicos Naranjo.
-        </p>
+        <p>Desde este panel podrás administrar los contenidos de Servicios Técnicos Naranjo.</p>
       </section>
 
       <section class="cards">
-
         <button class="card" type="button" id="openConfig">
           <div class="card-icon">⚙️</div>
           <h3>Configuración</h3>
@@ -338,24 +290,16 @@ input:focus,textarea:focus{
           <h3>Redes sociales</h3>
           <p>Facebook, Instagram, TikTok y YouTube.</p>
         </button>
-
       </section>
 
       <footer class="dashboard-footer">
         Servicios Técnicos Naranjo · Panel administrativo
       </footer>
-
     </section>
 
-
-    <!-- MODULO CONFIGURACION -->
-
     <section id="configSection" class="module">
-
       <div class="module-top">
-        <button type="button" class="back-button" id="backHome">
-          ← Volver
-        </button>
+        <button type="button" class="back-button" id="backHome">← Volver</button>
         <div class="module-title">
           <h2>Configuración</h2>
           <p>Información principal de tu negocio.</p>
@@ -363,30 +307,20 @@ input:focus,textarea:focus{
       </div>
 
       <div class="module-box">
-
         <h3>Información de la página</h3>
         <p class="module-description">
-          Modifica estos datos y guarda los cambios para actualizar
-          la información que aparece en tu página pública.
+          Modifica estos datos y guarda los cambios para actualizar la información que aparece en tu página pública.
         </p>
 
-        <div id="configLoading" class="notice">
-          Cargando información desde Supabase...
-        </div>
-
+        <div id="configLoading" class="notice">Cargando información desde Supabase...</div>
         <div id="configError" class="error"></div>
 
         <form id="configForm" style="display:none">
-
           <div class="form-grid">
-
             <div class="form-group full-width">
               <label for="heroTitle">Título principal</label>
               <textarea id="heroTitle" required></textarea>
-              <span class="field-help">
-                Puedes conservar etiquetas como &lt;br&gt; y
-                &lt;span&gt; para mantener el formato del título.
-              </span>
+              <span class="field-help">Puedes conservar etiquetas como &lt;br&gt; y &lt;span&gt; para mantener el formato del título.</span>
             </div>
 
             <div class="form-group full-width">
@@ -396,317 +330,213 @@ input:focus,textarea:focus{
 
             <div class="form-group">
               <label for="whatsapp">Número de WhatsApp</label>
-              <input type="text" id="whatsapp"
-                placeholder="Ejemplo: 573103723677">
-              <span class="field-help">
-                Incluye el indicativo del país. Solo números.
-              </span>
+              <input type="text" id="whatsapp" placeholder="Ejemplo: 573103723677">
+              <span class="field-help">Incluye el indicativo del país. Solo números.</span>
             </div>
 
             <div class="form-group">
               <label for="schedule">Horario de atención</label>
-              <textarea id="schedule"
-                placeholder="Ejemplo: Lunes a sábado..."></textarea>
+              <textarea id="schedule" placeholder="Ejemplo: Lunes a sábado..."></textarea>
             </div>
 
             <div class="form-group full-width">
               <label for="address">Dirección del negocio</label>
-              <input type="text" id="address"
-                placeholder="Dirección del taller">
+              <input type="text" id="address" placeholder="Dirección del taller">
             </div>
 
             <div class="form-group full-width">
               <label for="mapsUrl">Enlace de Google Maps</label>
-              <input type="url" id="mapsUrl"
-                placeholder="https://maps.google.com/...">
+              <input type="url" id="mapsUrl" placeholder="https://maps.google.com/...">
             </div>
-
           </div>
 
           <div class="save-row">
-            <button type="submit" id="saveConfig"
-              class="primary-button save-button">
-              Guardar cambios
-            </button>
+            <button type="submit" id="saveConfig" class="primary-button save-button">Guardar cambios</button>
           </div>
-
         </form>
 
         <div id="configStatus" class="success"></div>
-
       </div>
-
     </section>
 
   </main>
 </div>
 
-
 <script>
-// ==========================================
-// CONEXION CON SUPABASE
-// ==========================================
-
-const SUPABASE_URL =
-  "https://peyqwmwrqrkexhesauyl.supabase.co";
-
-const SUPABASE_KEY =
-  "sb_publishable_O3jpxUZzh96uwJU4SleMxA_pxyt7-WH";
+const SUPABASE_URL = "https://peyqwmwrqrkexhesauyl.supabase.co";
+const SUPABASE_KEY = "sb_publishable_O3jpxUZzh96uwJU4SleMxA_pxyt7-WH";
 
 const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
 
+const $ = id => document.getElementById(id);
 
-// ==========================================
-// ELEMENTOS GENERALES
-// ==========================================
+const loginContainer = $("loginContainer");
+const adminPanel = $("adminPanel");
+const loginForm = $("loginForm");
+const loginButton = $("loginButton");
+const homeSection = $("homeSection");
+const configSection = $("configSection");
+const configForm = $("configForm");
+const configLoading = $("configLoading");
+const configError = $("configError");
+const configStatus = $("configStatus");
+const saveConfigButton = $("saveConfig");
 
-const loginContainer = document.getElementById("loginContainer");
-const adminPanel = document.getElementById("adminPanel");
-const loginForm = document.getElementById("loginForm");
-const loginButton = document.getElementById("loginButton");
-const logoutButton = document.getElementById("logoutButton");
-const errorMessage = document.getElementById("errorMessage");
-const successMessage = document.getElementById("successMessage");
-
-const homeSection = document.getElementById("homeSection");
-const configSection = document.getElementById("configSection");
-
-const configForm = document.getElementById("configForm");
-const configLoading = document.getElementById("configLoading");
-const configError = document.getElementById("configError");
-const configStatus = document.getElementById("configStatus");
-const saveConfigButton = document.getElementById("saveConfig");
-
-
-// ==========================================
-// MENSAJES
-// ==========================================
-
-function showError(message) {
-  successMessage.style.display = "none";
-  errorMessage.textContent = message;
-  errorMessage.style.display = "block";
+function showError(message){
+  $("successMessage").style.display = "none";
+  $("errorMessage").textContent = message;
+  $("errorMessage").style.display = "block";
 }
 
-function showSuccess(message) {
-  errorMessage.style.display = "none";
-  successMessage.textContent = message;
-  successMessage.style.display = "block";
+function clearMessages(){
+  $("errorMessage").style.display = "none";
+  $("successMessage").style.display = "none";
+  $("errorMessage").textContent = "";
+  $("successMessage").textContent = "";
 }
 
-function clearMessages() {
-  errorMessage.style.display = "none";
-  successMessage.style.display = "none";
-  errorMessage.textContent = "";
-  successMessage.textContent = "";
-}
-
-function showConfigError(message) {
+function showConfigError(message){
   configStatus.style.display = "none";
   configError.textContent = message;
   configError.style.display = "block";
 }
 
-function showConfigSuccess(message) {
+function showConfigSuccess(message){
   configError.style.display = "none";
   configStatus.textContent = message;
   configStatus.style.display = "block";
 }
 
-
-// ==========================================
-// NAVEGACION DEL PANEL
-// ==========================================
-
-function showHome() {
+function showHome(){
   homeSection.style.display = "block";
   configSection.style.display = "none";
 }
 
-function showConfig() {
+async function showConfig(){
   homeSection.style.display = "none";
   configSection.style.display = "block";
-  loadConfig();
+  await loadConfig();
 }
 
-document.getElementById("openConfig").addEventListener("click", showConfig);
-document.getElementById("backHome").addEventListener("click", showHome);
+$("openConfig").addEventListener("click", showConfig);
+$("backHome").addEventListener("click", showHome);
 
-
-// Las otras secciones se habilitarán en sus próximas etapas.
-function showComingSoon() {
+function showComingSoon(){
   alert("Esta sección todavía está en desarrollo.");
 }
 
-document.getElementById("notReadyServices").addEventListener("click", showComingSoon);
-document.getElementById("notReadyGallery").addEventListener("click", showComingSoon);
-document.getElementById("notReadySocial").addEventListener("click", showComingSoon);
+$("notReadyServices").addEventListener("click", showComingSoon);
+$("notReadyGallery").addEventListener("click", showComingSoon);
+$("notReadySocial").addEventListener("click", showComingSoon);
 
-
-// ==========================================
-// MOSTRAR PANTALLAS
-// ==========================================
-
-function showAdminPanel() {
+function showAdminPanel(){
   loginContainer.style.display = "none";
   adminPanel.style.display = "block";
   showHome();
 }
 
-function showLogin() {
+function showLogin(){
   loginContainer.style.display = "flex";
   adminPanel.style.display = "none";
 }
 
+async function checkSession(){
+  try{
+    const {data,error} = await supabaseClient.auth.getSession();
+    if(error) throw error;
 
-// ==========================================
-// COMPROBAR SESION
-// ==========================================
-
-async function checkSession() {
-  try {
-    const { data, error } = await supabaseClient.auth.getSession();
-
-    if (error) {
-      showError("Error de Supabase: " + error.message);
-      showLogin();
-      return;
-    }
-
-    if (data.session) {
+    if(data.session){
       showAdminPanel();
-    } else {
+    }else{
       showLogin();
     }
-
-  } catch (error) {
-    showError("Error: " + error.message);
+  }catch(error){
+    showError("Error de Supabase: " + error.message);
     showLogin();
   }
 }
 
-
-// ==========================================
-// INICIAR SESION
-// ==========================================
-
-loginForm.addEventListener("submit", async function(event) {
+loginForm.addEventListener("submit", async function(event){
   event.preventDefault();
   clearMessages();
 
   loginButton.disabled = true;
   loginButton.textContent = "Iniciando sesión...";
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+  const email = $("email").value.trim();
+  const password = $("password").value;
 
-  try {
-    const { data, error } =
-      await supabaseClient.auth.signInWithPassword({
-        email: email,
-        password: password
-      });
+  try{
+    const {data,error} = await supabaseClient.auth.signInWithPassword({
+      email,
+      password
+    });
 
-    if (error) {
-      showError("Error de Supabase: " + error.message);
-      return;
-    }
+    if(error) throw error;
 
-    if (data.session) {
+    if(data.session){
       showAdminPanel();
-    } else {
+    }else{
       showError("Supabase no devolvió una sesión.");
     }
-
-  } catch (error) {
-    showError("Error inesperado: " + error.message);
-  } finally {
+  }catch(error){
+    showError("Error de Supabase: " + error.message);
+  }finally{
     loginButton.disabled = false;
     loginButton.textContent = "Iniciar sesión";
   }
 });
 
-
-// ==========================================
-// CERRAR SESION
-// ==========================================
-
-logoutButton.addEventListener("click", async function() {
+$("logoutButton").addEventListener("click", async function(){
   clearMessages();
 
-  const { error } = await supabaseClient.auth.signOut();
+  const {error} = await supabaseClient.auth.signOut();
 
-  if (error) {
+  if(error){
     showError("Error al cerrar sesión: " + error.message);
     return;
   }
 
-  document.getElementById("email").value = "";
-  document.getElementById("password").value = "";
-
+  $("email").value = "";
+  $("password").value = "";
   showLogin();
 });
 
-
-// ==========================================
-// CARGAR CONFIGURACION DESDE SUPABASE
-// ==========================================
-
-async function loadConfig() {
+async function loadConfig(){
   configForm.style.display = "none";
   configLoading.style.display = "block";
   configError.style.display = "none";
   configStatus.style.display = "none";
 
-  try {
-    const { data, error } = await supabaseClient
+  try{
+    const {data,error} = await supabaseClient
       .from("config")
       .select("*")
-      .eq("id", 1)
+      .eq("id",1)
       .single();
 
-    if (error) {
-      throw error;
-    }
+    if(error) throw error;
 
-    document.getElementById("heroTitle").value =
-      data.hero_title || "";
-
-    document.getElementById("heroDescription").value =
-      data.hero_description || "";
-
-    document.getElementById("whatsapp").value =
-      data.whatsapp || "";
-
-    document.getElementById("address").value =
-      data.address || "";
-
-    document.getElementById("schedule").value =
-      data.schedule || "";
-
-    document.getElementById("mapsUrl").value =
-      data.maps_url || "";
+    $("heroTitle").value = data.hero_title || "";
+    $("heroDescription").value = data.hero_description || "";
+    $("whatsapp").value = data.whatsapp || "";
+    $("address").value = data.address || "";
+    $("schedule").value = data.schedule || "";
+    $("mapsUrl").value = data.maps_url || "";
 
     configLoading.style.display = "none";
     configForm.style.display = "block";
 
-  } catch (error) {
+  }catch(error){
     configLoading.style.display = "none";
-    showConfigError(
-      "No se pudo cargar la configuración: " + error.message
-    );
+    showConfigError("No se pudo cargar la configuración: " + error.message);
   }
 }
 
-
-// ==========================================
-// GUARDAR CONFIGURACION EN SUPABASE
-// ==========================================
-
-configForm.addEventListener("submit", async function(event) {
+configForm.addEventListener("submit", async function(event){
   event.preventDefault();
 
   configError.style.display = "none";
@@ -716,61 +546,48 @@ configForm.addEventListener("submit", async function(event) {
   saveConfigButton.textContent = "Guardando...";
 
   const updatedConfig = {
-    hero_title: document.getElementById("heroTitle").value.trim(),
-    hero_description: document.getElementById("heroDescription").value.trim(),
-    whatsapp: document.getElementById("whatsapp").value.trim(),
-    address: document.getElementById("address").value.trim(),
-    schedule: document.getElementById("schedule").value.trim(),
-    maps_url: document.getElementById("mapsUrl").value.trim(),
+    hero_title: $("heroTitle").value.trim(),
+    hero_description: $("heroDescription").value.trim(),
+    whatsapp: $("whatsapp").value.trim(),
+    address: $("address").value.trim(),
+    schedule: $("schedule").value.trim(),
+    maps_url: $("mapsUrl").value.trim(),
     updated_at: new Date().toISOString()
   };
 
-  try {
-    const { data, error } = await supabaseClient
+  try{
+    const {data,error} = await supabaseClient
       .from("config")
       .update(updatedConfig)
-      .eq("id", 1)
+      .eq("id",1)
       .select()
       .single();
 
-    if (error) {
-      throw error;
+    if(error) throw error;
+
+    if(!data){
+      throw new Error("No se encontró el registro para actualizar.");
     }
 
-    showConfigSuccess(
-      "¡Cambios guardados correctamente! La información quedó actualizada en Supabase."
-    );
+    showConfigSuccess("¡Cambios guardados correctamente! La información quedó actualizada en Supabase.");
 
-  } catch (error) {
-    showConfigError(
-      "No se pudieron guardar los cambios: " + error.message
-    );
-  } finally {
+  }catch(error){
+    showConfigError("No se pudieron guardar los cambios: " + error.message);
+  }finally{
     saveConfigButton.disabled = false;
     saveConfigButton.textContent = "Guardar cambios";
   }
 });
 
-
-// ==========================================
-// VIGILAR AUTENTICACION
-// ==========================================
-
-supabaseClient.auth.onAuthStateChange(function(event, session) {
-  if (session) {
+supabaseClient.auth.onAuthStateChange(function(event,session){
+  if(session){
     showAdminPanel();
-  } else {
+  }else{
     showLogin();
   }
 });
 
-
-// ==========================================
-// INICIAR
-// ==========================================
-
 checkSession();
-
 </script>
 
 </body>
