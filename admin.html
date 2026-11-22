@@ -10,389 +10,235 @@
 
 <style>
 :root {
-  --bg: #0b0b0b;
-  --surface: #151515;
-  --surface2: #1d1d1d;
-  --border: #2b2b2b;
-  --red: #e50914;
-  --red-dark: #bd0710;
-  --white: #ffffff;
-  --muted: #a3a3a3;
+  --bg:#0b0b0b;
+  --surface:#151515;
+  --surface2:#202020;
+  --border:#303030;
+  --red:#e50914;
+  --white:#fff;
+  --muted:#aaa;
 }
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--white);
+  min-height:100vh;
 }
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--bg);
-  color: var(--white);
-  min-height: 100vh;
-}
-
-button, input {
-  font: inherit;
-}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
 
 /* LOGIN */
 
-.login-container {
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 18px;
-  background:
-    radial-gradient(ellipse at 50% 15%, rgba(229,9,20,.13), transparent 55%),
-    var(--bg);
+.login-container{
+  min-height:100vh;
+  min-height:100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px 18px;
+  background:radial-gradient(ellipse at 50% 15%,rgba(229,9,20,.13),transparent 55%),var(--bg);
 }
-
-.login-box {
-  width: 100%;
-  max-width: 420px;
-  padding: 36px 30px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  box-shadow: 0 18px 55px rgba(0,0,0,.55);
+.login-box{
+  width:100%;
+  max-width:420px;
+  padding:36px 30px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:0 18px 55px rgba(0,0,0,.55);
 }
-
-.logo {
-  text-align: center;
-  margin-bottom: 30px;
+.logo{text-align:center;margin-bottom:30px}
+.logo h1{
+  font-size:clamp(22px,5vw,27px);
+  text-transform:uppercase;
+  line-height:1.25;
 }
-
-.logo h1 {
-  color: var(--white);
-  font-size: clamp(22px, 5vw, 27px);
-  font-weight: 800;
-  line-height: 1.25;
-  text-transform: uppercase;
-  letter-spacing: .4px;
+.logo h1 span,.brand h1 span{color:var(--red)}
+.logo-mark{
+  width:58px;height:4px;border-radius:10px;
+  background:var(--red);margin:16px auto;
 }
-
-.logo h1 span {
-  color: var(--red);
+.logo p{
+  color:var(--muted);font-size:13px;
+  letter-spacing:1.5px;text-transform:uppercase;
 }
+.login-title{text-align:center;font-size:21px;margin-bottom:25px}
 
-.logo-mark {
-  width: 58px;
-  height: 4px;
-  border-radius: 10px;
-  background: var(--red);
-  margin: 16px auto;
+/* FORMULARIOS */
+
+.form-group{margin-bottom:20px}
+label{
+  display:block;margin-bottom:9px;
+  color:#e5e5e5;font-size:14px;font-weight:600;
 }
-
-.logo p {
-  color: var(--muted);
-  font-size: 13px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+input,textarea{
+  display:block;width:100%;
+  padding:13px 14px;
+  background:#0d0d0d;
+  border:1px solid #363636;
+  border-radius:8px;
+  color:white;outline:none;font-size:15px;
 }
-
-.login-title {
-  font-size: 21px;
-  text-align: center;
-  margin-bottom: 25px;
+textarea{min-height:105px;resize:vertical;line-height:1.5}
+input::placeholder,textarea::placeholder{color:#777}
+input:focus,textarea:focus{
+  border-color:var(--red);
+  box-shadow:0 0 0 3px rgba(229,9,20,.12);
 }
-
-.form-group {
-  margin-bottom: 20px;
+.primary-button{
+  width:100%;min-height:49px;
+  border:0;border-radius:8px;
+  background:var(--red);color:white;
+  font-weight:700;font-size:15px;
+  transition:background .2s;
 }
-
-label {
-  display: block;
-  margin-bottom: 9px;
-  color: #e5e5e5;
-  font-size: 14px;
-  font-weight: 600;
+.primary-button:hover{background:#bd0710}
+.primary-button:disabled{opacity:.6;cursor:wait}
+.error,.success,.notice{
+  display:none;padding:13px;border-radius:8px;
+  margin-bottom:18px;font-size:14px;line-height:1.5;
+  overflow-wrap:anywhere;
 }
-
-input {
-  display: block;
-  width: 100%;
-  min-height: 49px;
-  padding: 13px 14px;
-  background: #0d0d0d;
-  border: 1px solid #363636;
-  border-radius: 8px;
-  color: white;
-  outline: none;
-  font-size: 15px;
-  transition: border-color .2s, box-shadow .2s;
+.error{background:#351012;border:1px solid #8f2020;color:#ffb3b3}
+.success{background:#103a19;border:1px solid #227a35;color:#b8ffc4}
+.notice{
+  display:block;background:#211b0d;
+  border:1px solid #66501c;color:#e8d49a;
 }
-
-input::placeholder {
-  color: #777;
-}
-
-input:focus {
-  border-color: var(--red);
-  box-shadow: 0 0 0 3px rgba(229,9,20,.12);
-}
-
-.primary-button {
-  display: block;
-  width: 100%;
-  min-height: 49px;
-  border: none;
-  border-radius: 8px;
-  background: var(--red);
-  color: white;
-  font-weight: 700;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background .2s, transform .2s;
-}
-
-.primary-button:hover {
-  background: var(--red-dark);
-}
-
-.primary-button:active {
-  transform: scale(.99);
-}
-
-.primary-button:disabled {
-  opacity: .6;
-  cursor: not-allowed;
-}
-
-.login-footer {
-  margin-top: 25px;
-  padding-top: 18px;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  color: #777;
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-.error, .success {
-  display: none;
-  padding: 13px;
-  border-radius: 8px;
-  margin-bottom: 18px;
-  font-size: 14px;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
-}
-
-.error {
-  background: #351012;
-  border: 1px solid #8f2020;
-  color: #ffb3b3;
-}
-
-.success {
-  background: #103a19;
-  border: 1px solid #227a35;
-  color: #b8ffc4;
+.login-footer{
+  margin-top:25px;padding-top:18px;
+  border-top:1px solid var(--border);
+  text-align:center;color:#777;font-size:12px;line-height:1.6;
 }
 
 /* PANEL */
 
-#adminPanel {
-  display: none;
-  min-height: 100vh;
+#adminPanel{display:none;min-height:100vh}
+.admin-header{
+  position:sticky;top:0;z-index:10;
+  min-height:76px;padding:15px 5%;
+  background:rgba(17,17,17,.96);
+  border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;
+  align-items:center;gap:15px;
+  backdrop-filter:blur(12px);
+}
+.brand h1{font-size:19px;text-transform:uppercase;line-height:1.3}
+.brand p{color:var(--muted);font-size:11px;margin-top:3px;letter-spacing:1px}
+.logout-btn{
+  width:auto;min-height:40px;padding:0 17px;
+  background:#292929;color:white;
+  border:1px solid #3b3b3b;border-radius:7px;
+  font-size:13px;font-weight:600;
+}
+.logout-btn:hover{background:#3a3a3a}
+.dashboard{
+  width:100%;max-width:1150px;
+  margin:0 auto;padding:35px 22px 60px;
+}
+.section-heading{margin-bottom:25px}
+.section-heading h2{font-size:25px;margin-bottom:8px}
+.section-heading p{color:var(--muted);font-size:14px;line-height:1.5}
+.welcome{
+  background:linear-gradient(110deg,#1d1d1d,#131313);
+  border:1px solid var(--border);
+  border-left:4px solid var(--red);
+  border-radius:10px;padding:23px;margin-bottom:30px;
+}
+.welcome h2{font-size:19px;margin-bottom:8px}
+.welcome p{color:var(--muted);font-size:14px;line-height:1.5}
+.cards{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;
+}
+.card{
+  display:block;width:100%;text-align:left;
+  background:var(--surface);color:white;
+  border:1px solid var(--border);
+  border-radius:12px;padding:24px;
+  transition:.2s;
+}
+.card:hover{border-color:var(--red);transform:translateY(-3px)}
+.card-icon{
+  width:48px;height:48px;display:flex;
+  justify-content:center;align-items:center;
+  background:rgba(229,9,20,.12);
+  border:1px solid rgba(229,9,20,.22);
+  border-radius:10px;font-size:24px;margin-bottom:17px;
+}
+.card h3{font-size:17px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:13px;line-height:1.6}
+.dashboard-footer{
+  border-top:1px solid var(--border);
+  margin-top:40px;padding-top:20px;
+  color:#777;font-size:12px;text-align:center;
 }
 
-.admin-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  min-height: 76px;
-  padding: 15px 5%;
-  background: rgba(17,17,17,.96);
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  backdrop-filter: blur(12px);
+/* MODULO CONFIGURACION */
+
+.module{display:none}
+.module-top{
+  display:flex;align-items:center;gap:15px;
+  margin-bottom:25px;
 }
-
-.brand h1 {
-  font-size: 19px;
-  text-transform: uppercase;
-  line-height: 1.3;
+.back-button{
+  flex-shrink:0;background:#252525;
+  border:1px solid #3a3a3a;color:white;
+  border-radius:8px;padding:11px 15px;
 }
-
-.brand h1 span {
-  color: var(--red);
+.back-button:hover{background:#333}
+.module-title h2{font-size:23px;margin-bottom:5px}
+.module-title p{font-size:13px;color:var(--muted);line-height:1.4}
+.module-box{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;padding:25px;
 }
-
-.brand p {
-  color: var(--muted);
-  font-size: 11px;
-  margin-top: 3px;
-  letter-spacing: 1px;
+.module-box h3{font-size:17px;margin-bottom:8px}
+.module-description{
+  color:var(--muted);font-size:13px;
+  line-height:1.5;margin-bottom:24px;
 }
-
-.logout-btn {
-  width: auto;
-  min-height: 40px;
-  padding: 0 17px;
-  background: #292929;
-  color: white;
-  border: 1px solid #3b3b3b;
-  border-radius: 7px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
+.form-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:0 20px;
 }
-
-.logout-btn:hover {
-  background: #3a3a3a;
+.full-width{grid-column:1/-1}
+.field-help{
+  display:block;color:#858585;
+  font-size:11px;margin-top:7px;line-height:1.5;
 }
-
-.dashboard {
-  width: 100%;
-  max-width: 1150px;
-  margin: 0 auto;
-  padding: 35px 22px 60px;
+.save-row{
+  display:flex;justify-content:flex-end;
+  margin-top:10px;
 }
+.save-button{width:auto;min-width:190px;padding:0 22px}
+#configStatus{margin-top:18px;margin-bottom:0}
+#configStatus:empty{display:none}
 
-.section-heading {
-  margin-bottom: 25px;
-}
-
-.section-heading h2 {
-  font-size: 25px;
-  margin-bottom: 8px;
-}
-
-.section-heading p {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.welcome {
-  background: linear-gradient(110deg, #1d1d1d, #131313);
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--red);
-  border-radius: 10px;
-  padding: 23px;
-  margin-bottom: 30px;
-}
-
-.welcome h2 {
-  font-size: 19px;
-  margin-bottom: 8px;
-}
-
-.welcome p {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.card {
-  display: block;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 24px;
-  transition: .2s;
-  cursor: default;
-}
-
-.card:hover {
-  border-color: var(--red);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0,0,0,.3);
-}
-
-.card-icon {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(229,9,20,.12);
-  border: 1px solid rgba(229,9,20,.22);
-  border-radius: 10px;
-  font-size: 24px;
-  margin-bottom: 17px;
-}
-
-.card h3 {
-  font-size: 17px;
-  margin-bottom: 8px;
-}
-
-.card p {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.dashboard-footer {
-  border-top: 1px solid var(--border);
-  margin-top: 40px;
-  padding-top: 20px;
-  color: #777;
-  font-size: 12px;
-  text-align: center;
-}
-
-@media (max-width: 600px) {
-  .login-box {
-    padding: 30px 22px;
-  }
-
-  .admin-header {
-    padding: 13px 15px;
-  }
-
-  .brand h1 {
-    font-size: 14px;
-  }
-
-  .brand p {
-    font-size: 9px;
-  }
-
-  .logout-btn {
-    min-height: 38px;
-    padding: 0 11px;
-    font-size: 11px;
-  }
-
-  .dashboard {
-    padding: 27px 16px 45px;
-  }
-
-  .section-heading h2 {
-    font-size: 22px;
-  }
-
-  .cards {
-    grid-template-columns: 1fr;
-    gap: 13px;
-  }
-
-  .card {
-    padding: 20px;
-  }
+@media(max-width:600px){
+  .login-box{padding:30px 22px}
+  .admin-header{padding:13px 15px}
+  .brand h1{font-size:14px}
+  .brand p{font-size:9px}
+  .logout-btn{min-height:38px;padding:0 11px;font-size:11px}
+  .dashboard{padding:27px 16px 45px}
+  .section-heading h2{font-size:22px}
+  .cards{grid-template-columns:1fr;gap:13px}
+  .card{padding:20px}
+  .module-box{padding:19px 16px}
+  .form-grid{grid-template-columns:1fr}
+  .full-width{grid-column:auto}
+  .save-row{display:block}
+  .save-button{width:100%}
+  .module-top{align-items:flex-start}
+  .module-title h2{font-size:20px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- INICIO DE SESIÓN -->
+<!-- INICIO DE SESION -->
 
 <div id="loginContainer" class="login-container">
   <div class="login-box">
@@ -409,40 +255,29 @@ input:focus {
     <div id="successMessage" class="success"></div>
 
     <form id="loginForm">
-
       <div class="form-group">
         <label for="email">Correo electrónico</label>
-        <input
-          type="email"
-          id="email"
+        <input type="email" id="email"
           placeholder="Correo del administrador"
-          autocomplete="email"
-          required
-        >
+          autocomplete="email" required>
       </div>
 
       <div class="form-group">
         <label for="password">Contraseña</label>
-        <input
-          type="password"
-          id="password"
+        <input type="password" id="password"
           placeholder="Ingresa tu contraseña"
-          autocomplete="current-password"
-          required
-        >
+          autocomplete="current-password" required>
       </div>
 
       <button type="submit" id="loginButton" class="primary-button">
         Iniciar sesión
       </button>
-
     </form>
 
     <div class="login-footer">
       Acceso exclusivo para administradores<br>
       Servicios Técnicos Naranjo
     </div>
-
   </div>
 </div>
 
@@ -452,64 +287,156 @@ input:focus {
 <div id="adminPanel">
 
   <header class="admin-header">
-
     <div class="brand">
       <h1>Servicios Técnicos <span>Naranjo</span></h1>
       <p>ADMINISTRACIÓN DEL SITIO WEB</p>
     </div>
-
-    <button id="logoutButton" class="logout-btn">
-      Cerrar sesión
-    </button>
-
+    <button id="logoutButton" class="logout-btn">Cerrar sesión</button>
   </header>
 
   <main class="dashboard">
 
-    <section class="section-heading">
-      <h2>Panel de administración</h2>
-      <p>Gestiona la información de tu negocio desde un solo lugar.</p>
+    <!-- INICIO DEL PANEL -->
+
+    <section id="homeSection">
+
+      <div class="section-heading">
+        <h2>Panel de administración</h2>
+        <p>Gestiona la información de tu negocio desde un solo lugar.</p>
+      </div>
+
+      <section class="welcome">
+        <h2>¡Bienvenido!</h2>
+        <p>
+          Desde este panel podrás administrar los contenidos de
+          Servicios Técnicos Naranjo.
+        </p>
+      </section>
+
+      <section class="cards">
+
+        <button class="card" type="button" id="openConfig">
+          <div class="card-icon">⚙️</div>
+          <h3>Configuración</h3>
+          <p>Título, descripción, WhatsApp, dirección y horario.</p>
+        </button>
+
+        <button class="card" type="button" id="notReadyServices">
+          <div class="card-icon">🔧</div>
+          <h3>Servicios</h3>
+          <p>Agregar, editar, ordenar, activar o desactivar servicios.</p>
+        </button>
+
+        <button class="card" type="button" id="notReadyGallery">
+          <div class="card-icon">🖼️</div>
+          <h3>Galería</h3>
+          <p>Administrar fotografías e imágenes del taller.</p>
+        </button>
+
+        <button class="card" type="button" id="notReadySocial">
+          <div class="card-icon">📱</div>
+          <h3>Redes sociales</h3>
+          <p>Facebook, Instagram, TikTok y YouTube.</p>
+        </button>
+
+      </section>
+
+      <footer class="dashboard-footer">
+        Servicios Técnicos Naranjo · Panel administrativo
+      </footer>
+
     </section>
 
-    <section class="welcome">
-      <h2>¡Bienvenido!</h2>
-      <p>
-        Desde este panel podrás administrar los contenidos de
-        Servicios Técnicos Naranjo.
-      </p>
+
+    <!-- MODULO CONFIGURACION -->
+
+    <section id="configSection" class="module">
+
+      <div class="module-top">
+        <button type="button" class="back-button" id="backHome">
+          ← Volver
+        </button>
+        <div class="module-title">
+          <h2>Configuración</h2>
+          <p>Información principal de tu negocio.</p>
+        </div>
+      </div>
+
+      <div class="module-box">
+
+        <h3>Información de la página</h3>
+        <p class="module-description">
+          Modifica estos datos y guarda los cambios para actualizar
+          la información que aparece en tu página pública.
+        </p>
+
+        <div id="configLoading" class="notice">
+          Cargando información desde Supabase...
+        </div>
+
+        <div id="configError" class="error"></div>
+
+        <form id="configForm" style="display:none">
+
+          <div class="form-grid">
+
+            <div class="form-group full-width">
+              <label for="heroTitle">Título principal</label>
+              <textarea id="heroTitle" required></textarea>
+              <span class="field-help">
+                Puedes conservar etiquetas como &lt;br&gt; y
+                &lt;span&gt; para mantener el formato del título.
+              </span>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="heroDescription">Descripción principal</label>
+              <textarea id="heroDescription" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="whatsapp">Número de WhatsApp</label>
+              <input type="text" id="whatsapp"
+                placeholder="Ejemplo: 573103723677">
+              <span class="field-help">
+                Incluye el indicativo del país. Solo números.
+              </span>
+            </div>
+
+            <div class="form-group">
+              <label for="schedule">Horario de atención</label>
+              <textarea id="schedule"
+                placeholder="Ejemplo: Lunes a sábado..."></textarea>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="address">Dirección del negocio</label>
+              <input type="text" id="address"
+                placeholder="Dirección del taller">
+            </div>
+
+            <div class="form-group full-width">
+              <label for="mapsUrl">Enlace de Google Maps</label>
+              <input type="url" id="mapsUrl"
+                placeholder="https://maps.google.com/...">
+            </div>
+
+          </div>
+
+          <div class="save-row">
+            <button type="submit" id="saveConfig"
+              class="primary-button save-button">
+              Guardar cambios
+            </button>
+          </div>
+
+        </form>
+
+        <div id="configStatus" class="success"></div>
+
+      </div>
+
     </section>
-
-    <section class="cards">
-
-      <article class="card">
-        <div class="card-icon">⚙️</div>
-        <h3>Configuración</h3>
-        <p>Título, descripción, WhatsApp, dirección y horario del negocio.</p>
-      </article>
-
-      <article class="card">
-        <div class="card-icon">🔧</div>
-        <h3>Servicios</h3>
-        <p>Agregar, editar, ordenar, activar o desactivar servicios.</p>
-      </article>
-
-      <article class="card">
-        <div class="card-icon">🖼️</div>
-        <h3>Galería</h3>
-        <p>Administrar las fotografías y las imágenes del taller.</p>
-      </article>
-
-      <article class="card">
-        <div class="card-icon">📱</div>
-        <h3>Redes sociales</h3>
-        <p>Actualizar Facebook, Instagram, TikTok y YouTube.</p>
-      </article>
-
-    </section>
-
-    <footer class="dashboard-footer">
-      Servicios Técnicos Naranjo · Panel administrativo
-    </footer>
 
   </main>
 </div>
@@ -517,7 +444,7 @@ input:focus {
 
 <script>
 // ==========================================
-// CONFIGURACIÓN DE SUPABASE
+// CONEXION CON SUPABASE
 // ==========================================
 
 const SUPABASE_URL =
@@ -533,7 +460,7 @@ const supabaseClient = window.supabase.createClient(
 
 
 // ==========================================
-// ELEMENTOS
+// ELEMENTOS GENERALES
 // ==========================================
 
 const loginContainer = document.getElementById("loginContainer");
@@ -543,6 +470,15 @@ const loginButton = document.getElementById("loginButton");
 const logoutButton = document.getElementById("logoutButton");
 const errorMessage = document.getElementById("errorMessage");
 const successMessage = document.getElementById("successMessage");
+
+const homeSection = document.getElementById("homeSection");
+const configSection = document.getElementById("configSection");
+
+const configForm = document.getElementById("configForm");
+const configLoading = document.getElementById("configLoading");
+const configError = document.getElementById("configError");
+const configStatus = document.getElementById("configStatus");
+const saveConfigButton = document.getElementById("saveConfig");
 
 
 // ==========================================
@@ -568,14 +504,56 @@ function clearMessages() {
   successMessage.textContent = "";
 }
 
+function showConfigError(message) {
+  configStatus.style.display = "none";
+  configError.textContent = message;
+  configError.style.display = "block";
+}
+
+function showConfigSuccess(message) {
+  configError.style.display = "none";
+  configStatus.textContent = message;
+  configStatus.style.display = "block";
+}
+
 
 // ==========================================
-// PANTALLAS
+// NAVEGACION DEL PANEL
+// ==========================================
+
+function showHome() {
+  homeSection.style.display = "block";
+  configSection.style.display = "none";
+}
+
+function showConfig() {
+  homeSection.style.display = "none";
+  configSection.style.display = "block";
+  loadConfig();
+}
+
+document.getElementById("openConfig").addEventListener("click", showConfig);
+document.getElementById("backHome").addEventListener("click", showHome);
+
+
+// Las otras secciones se habilitarán en sus próximas etapas.
+function showComingSoon() {
+  alert("Esta sección todavía está en desarrollo.");
+}
+
+document.getElementById("notReadyServices").addEventListener("click", showComingSoon);
+document.getElementById("notReadyGallery").addEventListener("click", showComingSoon);
+document.getElementById("notReadySocial").addEventListener("click", showComingSoon);
+
+
+// ==========================================
+// MOSTRAR PANTALLAS
 // ==========================================
 
 function showAdminPanel() {
   loginContainer.style.display = "none";
   adminPanel.style.display = "block";
+  showHome();
 }
 
 function showLogin() {
@@ -585,7 +563,7 @@ function showLogin() {
 
 
 // ==========================================
-// COMPROBAR SESIÓN
+// COMPROBAR SESION
 // ==========================================
 
 async function checkSession() {
@@ -612,7 +590,7 @@ async function checkSession() {
 
 
 // ==========================================
-// INICIAR SESIÓN
+// INICIAR SESION
 // ==========================================
 
 loginForm.addEventListener("submit", async function(event) {
@@ -634,13 +612,10 @@ loginForm.addEventListener("submit", async function(event) {
 
     if (error) {
       showError("Error de Supabase: " + error.message);
-      loginButton.disabled = false;
-      loginButton.textContent = "Iniciar sesión";
       return;
     }
 
     if (data.session) {
-      showSuccess("Inicio de sesión correcto.");
       showAdminPanel();
     } else {
       showError("Supabase no devolvió una sesión.");
@@ -648,15 +623,15 @@ loginForm.addEventListener("submit", async function(event) {
 
   } catch (error) {
     showError("Error inesperado: " + error.message);
+  } finally {
+    loginButton.disabled = false;
+    loginButton.textContent = "Iniciar sesión";
   }
-
-  loginButton.disabled = false;
-  loginButton.textContent = "Iniciar sesión";
 });
 
 
 // ==========================================
-// CERRAR SESIÓN
+// CERRAR SESION
 // ==========================================
 
 logoutButton.addEventListener("click", async function() {
@@ -677,7 +652,108 @@ logoutButton.addEventListener("click", async function() {
 
 
 // ==========================================
-// VIGILAR AUTENTICACIÓN
+// CARGAR CONFIGURACION DESDE SUPABASE
+// ==========================================
+
+async function loadConfig() {
+  configForm.style.display = "none";
+  configLoading.style.display = "block";
+  configError.style.display = "none";
+  configStatus.style.display = "none";
+
+  try {
+    const { data, error } = await supabaseClient
+      .from("config")
+      .select("*")
+      .eq("id", 1)
+      .single();
+
+    if (error) {
+      throw error;
+    }
+
+    document.getElementById("heroTitle").value =
+      data.hero_title || "";
+
+    document.getElementById("heroDescription").value =
+      data.hero_description || "";
+
+    document.getElementById("whatsapp").value =
+      data.whatsapp || "";
+
+    document.getElementById("address").value =
+      data.address || "";
+
+    document.getElementById("schedule").value =
+      data.schedule || "";
+
+    document.getElementById("mapsUrl").value =
+      data.maps_url || "";
+
+    configLoading.style.display = "none";
+    configForm.style.display = "block";
+
+  } catch (error) {
+    configLoading.style.display = "none";
+    showConfigError(
+      "No se pudo cargar la configuración: " + error.message
+    );
+  }
+}
+
+
+// ==========================================
+// GUARDAR CONFIGURACION EN SUPABASE
+// ==========================================
+
+configForm.addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  configError.style.display = "none";
+  configStatus.style.display = "none";
+
+  saveConfigButton.disabled = true;
+  saveConfigButton.textContent = "Guardando...";
+
+  const updatedConfig = {
+    hero_title: document.getElementById("heroTitle").value.trim(),
+    hero_description: document.getElementById("heroDescription").value.trim(),
+    whatsapp: document.getElementById("whatsapp").value.trim(),
+    address: document.getElementById("address").value.trim(),
+    schedule: document.getElementById("schedule").value.trim(),
+    maps_url: document.getElementById("mapsUrl").value.trim(),
+    updated_at: new Date().toISOString()
+  };
+
+  try {
+    const { data, error } = await supabaseClient
+      .from("config")
+      .update(updatedConfig)
+      .eq("id", 1)
+      .select()
+      .single();
+
+    if (error) {
+      throw error;
+    }
+
+    showConfigSuccess(
+      "¡Cambios guardados correctamente! La información quedó actualizada en Supabase."
+    );
+
+  } catch (error) {
+    showConfigError(
+      "No se pudieron guardar los cambios: " + error.message
+    );
+  } finally {
+    saveConfigButton.disabled = false;
+    saveConfigButton.textContent = "Guardar cambios";
+  }
+});
+
+
+// ==========================================
+// VIGILAR AUTENTICACION
 // ==========================================
 
 supabaseClient.auth.onAuthStateChange(function(event, session) {
