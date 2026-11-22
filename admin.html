@@ -23,7 +23,7 @@ body{
   color:var(--white);
   min-height:100vh;
 }
-button,input,textarea{font:inherit}
+button,input,textarea,select{font:inherit}
 button{cursor:pointer}
 .login-container{
   min-height:100vh;
@@ -64,7 +64,7 @@ label{
   display:block;margin-bottom:9px;
   color:#e5e5e5;font-size:14px;font-weight:600;
 }
-input,textarea{
+input,textarea,select{
   display:block;width:100%;
   padding:13px 14px;
   background:#0d0d0d;
@@ -74,7 +74,7 @@ input,textarea{
 }
 textarea{min-height:105px;resize:vertical;line-height:1.5}
 input::placeholder,textarea::placeholder{color:#777}
-input:focus,textarea:focus{
+input:focus,textarea:focus,select:focus{
   border-color:var(--red);
   box-shadow:0 0 0 3px rgba(229,9,20,.12);
 }
@@ -175,6 +175,7 @@ input:focus,textarea:focus{
   background:var(--surface);
   border:1px solid var(--border);
   border-radius:12px;padding:25px;
+  margin-bottom:20px;
 }
 .module-box h3{font-size:17px;margin-bottom:8px}
 .module-description{
@@ -193,6 +194,61 @@ input:focus,textarea:focus{
 .save-button{width:auto;min-width:190px;padding:0 22px}
 #configStatus{margin-top:18px;margin-bottom:0}
 #configStatus:empty{display:none}
+
+/* Elementos de administración de los módulos */
+.action-button{
+  border:1px solid #444;background:#292929;color:white;
+  padding:10px 14px;border-radius:7px;font-size:13px;
+}
+.action-button:hover{border-color:var(--red)}
+.danger-button{
+  border:1px solid #852323;background:#351012;color:#ffb3b3;
+  padding:9px 12px;border-radius:7px;font-size:12px;
+}
+.small-primary{
+  border:0;background:var(--red);color:white;
+  padding:11px 16px;border-radius:7px;font-weight:700;
+}
+.module-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.item-list{display:grid;gap:13px;margin-top:20px}
+.admin-item{
+  background:#101010;border:1px solid #303030;
+  border-radius:9px;padding:16px;
+  display:grid;grid-template-columns:100px 1fr;gap:15px;
+}
+.admin-item img{
+  width:100px;height:100px;object-fit:cover;
+  border-radius:7px;background:#222;
+}
+.item-content{min-width:0}
+.item-content h4{font-size:15px;margin-bottom:7px}
+.item-content p{
+  color:var(--muted);font-size:13px;line-height:1.5;
+  overflow-wrap:anywhere;white-space:pre-wrap;
+}
+.item-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.status-text{font-size:12px;margin-top:7px;color:#aaa}
+.status-active{color:#8ce99a}
+.status-inactive{color:#ffb3b3}
+.checkbox-line{
+  display:flex;align-items:center;gap:10px;
+  margin:12px 0;color:#ddd;font-size:13px;
+}
+.checkbox-line input{width:18px;height:18px;accent-color:var(--red)}
+.preview-image{
+  display:none;max-width:180px;max-height:150px;
+  object-fit:cover;border-radius:8px;margin-top:10px;
+}
+.empty-state{
+  color:#999;text-align:center;padding:25px 10px;
+  border:1px dashed #393939;border-radius:8px;font-size:13px;
+}
+.status-message{margin-top:15px}
+.social-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:15px;
+}
+.social-field{background:#101010;padding:15px;border-radius:8px;border:1px solid #303030}
+.social-field label{margin-bottom:10px}
 @media(max-width:600px){
   .login-box{padding:30px 22px}
   .admin-header{padding:13px 15px}
@@ -210,6 +266,9 @@ input:focus,textarea:focus{
   .save-button{width:100%}
   .module-top{align-items:flex-start}
   .module-title h2{font-size:20px}
+  .admin-item{grid-template-columns:75px 1fr;gap:11px;padding:12px}
+  .admin-item img{width:75px;height:75px}
+  .social-row{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -260,7 +319,6 @@ input:focus,textarea:focus{
         <h2>Panel de administración</h2>
         <p>Gestiona la información de tu negocio desde un solo lugar.</p>
       </div>
-
       <section class="welcome">
         <h2>¡Bienvenido!</h2>
         <p>Desde este panel podrás administrar los contenidos de Servicios Técnicos Naranjo.</p>
@@ -272,20 +330,17 @@ input:focus,textarea:focus{
           <h3>Configuración</h3>
           <p>Título, descripción, WhatsApp, dirección y horario.</p>
         </button>
-
-        <button class="card" type="button" id="notReadyServices">
+        <button class="card" type="button" id="openServices">
           <div class="card-icon">🔧</div>
           <h3>Servicios</h3>
           <p>Agregar, editar, ordenar, activar o desactivar servicios.</p>
         </button>
-
-        <button class="card" type="button" id="notReadyGallery">
+        <button class="card" type="button" id="openGallery">
           <div class="card-icon">🖼️</div>
           <h3>Galería</h3>
           <p>Administrar fotografías e imágenes del taller.</p>
         </button>
-
-        <button class="card" type="button" id="notReadySocial">
+        <button class="card" type="button" id="openSocial">
           <div class="card-icon">📱</div>
           <h3>Redes sociales</h3>
           <p>Facebook, Instagram, TikTok y YouTube.</p>
@@ -297,24 +352,22 @@ input:focus,textarea:focus{
       </footer>
     </section>
 
+    <!-- CONFIGURACIÓN -->
     <section id="configSection" class="module">
       <div class="module-top">
-        <button type="button" class="back-button" id="backHome">← Volver</button>
+        <button type="button" class="back-button" id="backHomeConfig">← Volver</button>
         <div class="module-title">
           <h2>Configuración</h2>
           <p>Información principal de tu negocio.</p>
         </div>
       </div>
-
       <div class="module-box">
         <h3>Información de la página</h3>
         <p class="module-description">
           Modifica estos datos y guarda los cambios para actualizar la información que aparece en tu página pública.
         </p>
-
         <div id="configLoading" class="notice">Cargando información desde Supabase...</div>
         <div id="configError" class="error"></div>
-
         <form id="configForm" style="display:none">
           <div class="form-grid">
             <div class="form-group full-width">
@@ -322,40 +375,175 @@ input:focus,textarea:focus{
               <textarea id="heroTitle" required></textarea>
               <span class="field-help">Puedes conservar etiquetas como &lt;br&gt; y &lt;span&gt; para mantener el formato del título.</span>
             </div>
-
             <div class="form-group full-width">
               <label for="heroDescription">Descripción principal</label>
               <textarea id="heroDescription" required></textarea>
             </div>
-
             <div class="form-group">
               <label for="whatsapp">Número de WhatsApp</label>
               <input type="text" id="whatsapp" placeholder="Ejemplo: 573103723677">
               <span class="field-help">Incluye el indicativo del país. Solo números.</span>
             </div>
-
             <div class="form-group">
               <label for="schedule">Horario de atención</label>
               <textarea id="schedule" placeholder="Ejemplo: Lunes a sábado..."></textarea>
             </div>
-
             <div class="form-group full-width">
               <label for="address">Dirección del negocio</label>
               <input type="text" id="address" placeholder="Dirección del taller">
             </div>
-
             <div class="form-group full-width">
               <label for="mapsUrl">Enlace de Google Maps</label>
               <input type="url" id="mapsUrl" placeholder="https://maps.google.com/...">
             </div>
           </div>
-
           <div class="save-row">
             <button type="submit" id="saveConfig" class="primary-button save-button">Guardar cambios</button>
           </div>
         </form>
-
         <div id="configStatus" class="success"></div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicesSection" class="module">
+      <div class="module-top">
+        <button type="button" class="back-button" id="backHomeServices">← Volver</button>
+        <div class="module-title">
+          <h2>Servicios</h2>
+          <p>Administra los servicios que ofrece el taller.</p>
+        </div>
+      </div>
+
+      <div class="module-box">
+        <h3 id="serviceFormTitle">Agregar servicio</h3>
+        <p class="module-description">El nombre y la descripción son obligatorios. La fotografía es opcional.</p>
+        <div id="servicesError" class="error"></div>
+        <div id="servicesStatus" class="success"></div>
+
+        <form id="serviceForm">
+          <input type="hidden" id="serviceId">
+          <input type="hidden" id="serviceOldImage">
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label for="serviceName">Nombre del servicio</label>
+              <input id="serviceName" type="text" required maxlength="100" placeholder="Ejemplo: Mantenimiento preventivo">
+            </div>
+            <div class="form-group full-width">
+              <label for="serviceDescription">Descripción</label>
+              <textarea id="serviceDescription" required placeholder="Describe brevemente el servicio"></textarea>
+            </div>
+            <div class="form-group full-width">
+              <label for="serviceImage">Fotografía (opcional)</label>
+              <input id="serviceImage" type="file" accept="image/*">
+              <span class="field-help">Puedes seleccionar una imagen desde tu iPhone. Se guardará en el almacenamiento del proyecto.</span>
+              <img id="servicePreview" class="preview-image" alt="Vista previa de la fotografía">
+            </div>
+            <div class="form-group">
+              <label for="serviceOrder">Orden de aparición</label>
+              <input id="serviceOrder" type="number" value="0">
+            </div>
+          </div>
+          <label class="checkbox-line">
+            <input id="serviceActive" type="checkbox" checked>
+            Servicio activo
+          </label>
+          <div class="module-actions">
+            <button type="submit" class="small-primary" id="saveService">Guardar servicio</button>
+            <button type="button" class="action-button" id="cancelServiceEdit" style="display:none">Cancelar edición</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="module-box">
+        <h3>Servicios registrados</h3>
+        <p class="module-description">Aquí puedes editar, activar, desactivar o eliminar los servicios.</p>
+        <div id="servicesList" class="item-list">
+          <div class="notice">Cargando servicios...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="gallerySection" class="module">
+      <div class="module-top">
+        <button type="button" class="back-button" id="backHomeGallery">← Volver</button>
+        <div class="module-title">
+          <h2>Galería</h2>
+          <p>Administra las fotografías de los trabajos realizados.</p>
+        </div>
+      </div>
+
+      <div class="module-box">
+        <h3>Agregar fotografías</h3>
+        <p class="module-description">Puedes seleccionar varias imágenes al mismo tiempo. La descripción de cada fotografía es opcional.</p>
+        <div id="galleryError" class="error"></div>
+        <div id="galleryStatus" class="success"></div>
+        <form id="galleryForm">
+          <div class="form-group">
+            <label for="galleryImages">Seleccionar fotografías</label>
+            <input id="galleryImages" type="file" accept="image/*" multiple required>
+            <span class="field-help">Selecciona una o varias fotografías desde tu dispositivo.</span>
+          </div>
+          <div id="galleryDescriptions"></div>
+          <div class="module-actions">
+            <button type="submit" class="small-primary" id="uploadGallery">Subir fotografías</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="module-box">
+        <h3>Fotografías guardadas</h3>
+        <p class="module-description">Puedes cambiar la descripción, modificar el orden o eliminar fotografías.</p>
+        <div id="galleryList" class="item-list">
+          <div class="notice">Cargando galería...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REDES SOCIALES -->
+    <section id="socialSection" class="module">
+      <div class="module-top">
+        <button type="button" class="back-button" id="backHomeSocial">← Volver</button>
+        <div class="module-title">
+          <h2>Redes sociales</h2>
+          <p>Administra los enlaces de tus redes sociales.</p>
+        </div>
+      </div>
+
+      <div class="module-box">
+        <h3>Enlaces de redes sociales</h3>
+        <p class="module-description">Pega el enlace de cada perfil y activa o desactiva su aparición en la página pública.</p>
+        <div id="socialError" class="error"></div>
+        <div id="socialStatus" class="success"></div>
+
+        <form id="socialForm">
+          <div class="social-row">
+            <div class="social-field">
+              <label for="facebook">Facebook</label>
+              <input type="url" id="facebook" placeholder="https://facebook.com/...">
+              <label class="checkbox-line"><input type="checkbox" id="facebookActive" checked> Mostrar en la página</label>
+            </div>
+            <div class="social-field">
+              <label for="instagram">Instagram</label>
+              <input type="url" id="instagram" placeholder="https://instagram.com/...">
+              <label class="checkbox-line"><input type="checkbox" id="instagramActive" checked> Mostrar en la página</label>
+            </div>
+            <div class="social-field">
+              <label for="tiktok">TikTok</label>
+              <input type="url" id="tiktok" placeholder="https://tiktok.com/@...">
+              <label class="checkbox-line"><input type="checkbox" id="tiktokActive" checked> Mostrar en la página</label>
+            </div>
+            <div class="social-field">
+              <label for="youtube">YouTube</label>
+              <input type="url" id="youtube" placeholder="https://youtube.com/...">
+              <label class="checkbox-line"><input type="checkbox" id="youtubeActive" checked> Mostrar en la página</label>
+            </div>
+          </div>
+          <div class="save-row">
+            <button type="submit" class="primary-button save-button" id="saveSocial">Guardar cambios</button>
+          </div>
+        </form>
       </div>
     </section>
 
@@ -365,12 +553,9 @@ input:focus,textarea:focus{
 <script>
 const SUPABASE_URL = "https://peyqwmwrqrkexhesauyl.supabase.co";
 const SUPABASE_KEY = "sb_publishable_O3jpxUZzh96uwJU4SleMxA_pxyt7-WH";
+const STORAGE_BUCKET = "imagenes-naranjo";
 
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const $ = id => document.getElementById(id);
 
 const loginContainer = $("loginContainer");
@@ -379,65 +564,104 @@ const loginForm = $("loginForm");
 const loginButton = $("loginButton");
 const homeSection = $("homeSection");
 const configSection = $("configSection");
+const servicesSection = $("servicesSection");
+const gallerySection = $("gallerySection");
+const socialSection = $("socialSection");
+
 const configForm = $("configForm");
 const configLoading = $("configLoading");
 const configError = $("configError");
 const configStatus = $("configStatus");
 const saveConfigButton = $("saveConfig");
 
+let servicesCache = [];
+let galleryCache = [];
+
 function showError(message){
   $("successMessage").style.display = "none";
   $("errorMessage").textContent = message;
   $("errorMessage").style.display = "block";
 }
-
 function clearMessages(){
   $("errorMessage").style.display = "none";
   $("successMessage").style.display = "none";
   $("errorMessage").textContent = "";
   $("successMessage").textContent = "";
 }
-
 function showConfigError(message){
   configStatus.style.display = "none";
   configError.textContent = message;
   configError.style.display = "block";
 }
-
 function showConfigSuccess(message){
   configError.style.display = "none";
   configStatus.textContent = message;
   configStatus.style.display = "block";
 }
-
+function showModuleMessage(id,message,type="success"){
+  const el = $(id);
+  el.textContent = message;
+  el.className = type;
+  el.style.display = "block";
+}
+function hideModuleMessage(id){
+  $(id).style.display = "none";
+  $(id).textContent = "";
+}
+function escapeHTML(value){
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  })[char]);
+}
 function showHome(){
   homeSection.style.display = "block";
   configSection.style.display = "none";
+  servicesSection.style.display = "none";
+  gallerySection.style.display = "none";
+  socialSection.style.display = "none";
 }
-
-async function showConfig(){
+function openModule(section){
   homeSection.style.display = "none";
-  configSection.style.display = "block";
+  configSection.style.display = "none";
+  servicesSection.style.display = "none";
+  gallerySection.style.display = "none";
+  socialSection.style.display = "none";
+  section.style.display = "block";
+}
+async function showConfig(){
+  openModule(configSection);
   await loadConfig();
 }
-
-$("openConfig").addEventListener("click", showConfig);
-$("backHome").addEventListener("click", showHome);
-
-function showComingSoon(){
-  alert("Esta sección todavía está en desarrollo.");
+async function showServices(){
+  openModule(servicesSection);
+  resetServiceForm();
+  await loadServices();
+}
+async function showGallery(){
+  openModule(gallerySection);
+  resetGalleryForm();
+  await loadGallery();
+}
+async function showSocial(){
+  openModule(socialSection);
+  await loadSocial();
 }
 
-$("notReadyServices").addEventListener("click", showComingSoon);
-$("notReadyGallery").addEventListener("click", showComingSoon);
-$("notReadySocial").addEventListener("click", showComingSoon);
+$("openConfig").addEventListener("click",showConfig);
+$("openServices").addEventListener("click",showServices);
+$("openGallery").addEventListener("click",showGallery);
+$("openSocial").addEventListener("click",showSocial);
+
+$("backHomeConfig").addEventListener("click",showHome);
+$("backHomeServices").addEventListener("click",showHome);
+$("backHomeGallery").addEventListener("click",showHome);
+$("backHomeSocial").addEventListener("click",showHome);
 
 function showAdminPanel(){
   loginContainer.style.display = "none";
   adminPanel.style.display = "block";
   showHome();
 }
-
 function showLogin(){
   loginContainer.style.display = "flex";
   adminPanel.style.display = "none";
@@ -447,41 +671,26 @@ async function checkSession(){
   try{
     const {data,error} = await supabaseClient.auth.getSession();
     if(error) throw error;
-
-    if(data.session){
-      showAdminPanel();
-    }else{
-      showLogin();
-    }
+    if(data.session) showAdminPanel();
+    else showLogin();
   }catch(error){
     showError("Error de Supabase: " + error.message);
     showLogin();
   }
 }
 
-loginForm.addEventListener("submit", async function(event){
+loginForm.addEventListener("submit",async function(event){
   event.preventDefault();
   clearMessages();
-
   loginButton.disabled = true;
   loginButton.textContent = "Iniciando sesión...";
-
   const email = $("email").value.trim();
   const password = $("password").value;
-
   try{
-    const {data,error} = await supabaseClient.auth.signInWithPassword({
-      email,
-      password
-    });
-
+    const {data,error} = await supabaseClient.auth.signInWithPassword({email,password});
     if(error) throw error;
-
-    if(data.session){
-      showAdminPanel();
-    }else{
-      showError("Supabase no devolvió una sesión.");
-    }
+    if(data.session) showAdminPanel();
+    else showError("Supabase no devolvió una sesión.");
   }catch(error){
     showError("Error de Supabase: " + error.message);
   }finally{
@@ -490,87 +699,63 @@ loginForm.addEventListener("submit", async function(event){
   }
 });
 
-$("logoutButton").addEventListener("click", async function(){
+$("logoutButton").addEventListener("click",async function(){
   clearMessages();
-
   const {error} = await supabaseClient.auth.signOut();
-
   if(error){
     showError("Error al cerrar sesión: " + error.message);
     return;
   }
-
   $("email").value = "";
   $("password").value = "";
   showLogin();
 });
 
+/* CONFIGURACIÓN */
 async function loadConfig(){
   configForm.style.display = "none";
   configLoading.style.display = "block";
   configError.style.display = "none";
   configStatus.style.display = "none";
-
   try{
-    const {data,error} = await supabaseClient
-      .from("config")
-      .select("*")
-      .eq("id",1)
-      .single();
-
+    const {data,error} = await supabaseClient.from("config")
+      .select("*").eq("id",1).single();
     if(error) throw error;
-
     $("heroTitle").value = data.hero_title || "";
     $("heroDescription").value = data.hero_description || "";
     $("whatsapp").value = data.whatsapp || "";
     $("address").value = data.address || "";
     $("schedule").value = data.schedule || "";
     $("mapsUrl").value = data.maps_url || "";
-
     configLoading.style.display = "none";
     configForm.style.display = "block";
-
   }catch(error){
     configLoading.style.display = "none";
     showConfigError("No se pudo cargar la configuración: " + error.message);
   }
 }
 
-configForm.addEventListener("submit", async function(event){
+configForm.addEventListener("submit",async function(event){
   event.preventDefault();
-
   configError.style.display = "none";
   configStatus.style.display = "none";
-
   saveConfigButton.disabled = true;
   saveConfigButton.textContent = "Guardando...";
-
   const updatedConfig = {
-    hero_title: $("heroTitle").value.trim(),
-    hero_description: $("heroDescription").value.trim(),
-    whatsapp: $("whatsapp").value.trim(),
-    address: $("address").value.trim(),
-    schedule: $("schedule").value.trim(),
-    maps_url: $("mapsUrl").value.trim(),
-    updated_at: new Date().toISOString()
+    hero_title:$("heroTitle").value.trim(),
+    hero_description:$("heroDescription").value.trim(),
+    whatsapp:$("whatsapp").value.trim(),
+    address:$("address").value.trim(),
+    schedule:$("schedule").value.trim(),
+    maps_url:$("mapsUrl").value.trim(),
+    updated_at:new Date().toISOString()
   };
-
   try{
-    const {data,error} = await supabaseClient
-      .from("config")
-      .update(updatedConfig)
-      .eq("id",1)
-      .select()
-      .single();
-
+    const {data,error} = await supabaseClient.from("config")
+      .update(updatedConfig).eq("id",1).select().single();
     if(error) throw error;
-
-    if(!data){
-      throw new Error("No se encontró el registro para actualizar.");
-    }
-
+    if(!data) throw new Error("No se encontró el registro para actualizar.");
     showConfigSuccess("¡Cambios guardados correctamente! La información quedó actualizada en Supabase.");
-
   }catch(error){
     showConfigError("No se pudieron guardar los cambios: " + error.message);
   }finally{
@@ -579,12 +764,436 @@ configForm.addEventListener("submit", async function(event){
   }
 });
 
-supabaseClient.auth.onAuthStateChange(function(event,session){
-  if(session){
-    showAdminPanel();
-  }else{
-    showLogin();
+/* FUNCIONES DE ALMACENAMIENTO */
+function safeFileName(name){
+  return name.normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-zA-Z0-9._-]/g,"-");
+}
+async function uploadImage(file,folder){
+  const extension = (file.name.split(".").pop() || "jpg").toLowerCase();
+  const filePath = folder + "/" + Date.now() + "-" +
+    Math.random().toString(36).slice(2,9) + "." + safeFileName(extension);
+  const {error} = await supabaseClient.storage.from(STORAGE_BUCKET)
+    .upload(filePath,file,{cacheControl:"3600",upsert:false});
+  if(error) throw error;
+  const {data} = supabaseClient.storage.from(STORAGE_BUCKET).getPublicUrl(filePath);
+  return data.publicUrl;
+}
+function storagePathFromUrl(url){
+  if(!url) return null;
+  try{
+    const marker = "/storage/v1/object/public/" + STORAGE_BUCKET + "/";
+    const index = url.indexOf(marker);
+    if(index === -1) return null;
+    return decodeURIComponent(url.substring(index + marker.length));
+  }catch(e){return null;}
+}
+async function removeStoredImage(url){
+  const path = storagePathFromUrl(url);
+  if(!path) return;
+  const {error} = await supabaseClient.storage.from(STORAGE_BUCKET).remove([path]);
+  if(error) console.warn("No se pudo eliminar el archivo:",error.message);
+}
+
+/* SERVICIOS */
+function resetServiceForm(){
+  $("serviceForm").reset();
+  $("serviceId").value = "";
+  $("serviceOldImage").value = "";
+  $("serviceOrder").value = 0;
+  $("serviceActive").checked = true;
+  $("serviceFormTitle").textContent = "Agregar servicio";
+  $("saveService").textContent = "Guardar servicio";
+  $("cancelServiceEdit").style.display = "none";
+  $("servicePreview").style.display = "none";
+  $("servicePreview").src = "";
+  $("serviceImage").value = "";
+  hideModuleMessage("servicesError");
+  hideModuleMessage("servicesStatus");
+}
+$("cancelServiceEdit").addEventListener("click",resetServiceForm);
+
+$("serviceImage").addEventListener("change",function(){
+  const file = this.files[0];
+  const preview = $("servicePreview");
+  if(!file){preview.style.display = "none";return;}
+  preview.src = URL.createObjectURL(file);
+  preview.style.display = "block";
+});
+
+async function loadServices(){
+  const list = $("servicesList");
+  list.innerHTML = '<div class="notice">Cargando servicios...</div>';
+  hideModuleMessage("servicesError");
+  try{
+    const {data,error} = await supabaseClient.from("services")
+      .select("*").order("sort_order",{ascending:true});
+    if(error) throw error;
+    servicesCache = data || [];
+    renderServices();
+  }catch(error){
+    list.innerHTML = "";
+    showModuleMessage("servicesError","No se pudieron cargar los servicios: " + error.message,"error");
   }
+}
+
+function renderServices(){
+  const list = $("servicesList");
+  if(!servicesCache.length){
+    list.innerHTML = '<div class="empty-state">Todavía no hay servicios registrados.</div>';
+    return;
+  }
+  list.innerHTML = servicesCache.map(service => `
+    <article class="admin-item">
+      ${service.image_url
+        ? `<img src="${escapeHTML(service.image_url)}" alt="Fotografía del servicio">`
+        : `<div class="empty-state">Sin foto</div>`}
+      <div class="item-content">
+        <h4>${escapeHTML(service.name)}</h4>
+        <p>${escapeHTML(service.description)}</p>
+        <div class="status-text ${service.active ? "status-active":"status-inactive"}">
+          ${service.active ? "Activo":"Desactivado"} · Orden: ${Number(service.sort_order || 0)}
+        </div>
+        <div class="item-actions">
+          <button class="action-button" data-action="edit" data-id="${service.id}">Editar</button>
+          <button class="action-button" data-action="toggle" data-id="${service.id}">
+            ${service.active ? "Desactivar":"Activar"}
+          </button>
+          <button class="danger-button" data-action="delete" data-id="${service.id}">Eliminar</button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+$("servicesList").addEventListener("click",async function(event){
+  const button = event.target.closest("button[data-action]");
+  if(!button) return;
+  const service = servicesCache.find(item => item.id === button.dataset.id);
+  if(!service) return;
+  const action = button.dataset.action;
+
+  if(action === "edit"){
+    $("serviceId").value = service.id;
+    $("serviceName").value = service.name || "";
+    $("serviceDescription").value = service.description || "";
+    $("serviceOrder").value = service.sort_order ?? 0;
+    $("serviceActive").checked = !!service.active;
+    $("serviceOldImage").value = service.image_url || "";
+    $("serviceFormTitle").textContent = "Editar servicio";
+    $("saveService").textContent = "Guardar cambios";
+    $("cancelServiceEdit").style.display = "inline-block";
+    if(service.image_url){
+      $("servicePreview").src = service.image_url;
+      $("servicePreview").style.display = "block";
+    }else{
+      $("servicePreview").style.display = "none";
+    }
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  if(action === "toggle"){
+    button.disabled = true;
+    try{
+      const {error} = await supabaseClient.from("services")
+        .update({active:!service.active}).eq("id",service.id);
+      if(error) throw error;
+      await loadServices();
+    }catch(error){
+      showModuleMessage("servicesError","No se pudo cambiar el estado: " + error.message,"error");
+    }finally{button.disabled = false;}
+  }
+
+  if(action === "delete"){
+    if(!confirm("¿Seguro que deseas eliminar este servicio?")) return;
+    button.disabled = true;
+    try{
+      const {error} = await supabaseClient.from("services")
+        .delete().eq("id",service.id);
+      if(error) throw error;
+      if(service.image_url) await removeStoredImage(service.image_url);
+      showModuleMessage("servicesStatus","Servicio eliminado correctamente.");
+      await loadServices();
+    }catch(error){
+      showModuleMessage("servicesError","No se pudo eliminar el servicio: " + error.message,"error");
+    }finally{button.disabled = false;}
+  }
+});
+
+$("serviceForm").addEventListener("submit",async function(event){
+  event.preventDefault();
+  hideModuleMessage("servicesError");
+  hideModuleMessage("servicesStatus");
+  const button = $("saveService");
+  button.disabled = true;
+  button.textContent = "Guardando...";
+  let uploadedUrl = null;
+  const id = $("serviceId").value;
+  const oldImage = $("serviceOldImage").value;
+
+  try{
+    const file = $("serviceImage").files[0];
+    if(file) uploadedUrl = await uploadImage(file,"servicios");
+
+    const record = {
+      name:$("serviceName").value.trim(),
+      description:$("serviceDescription").value.trim(),
+      sort_order:Number($("serviceOrder").value || 0),
+      active:$("serviceActive").checked,
+      image_url:uploadedUrl || oldImage || null
+    };
+
+    if(!record.name || !record.description){
+      throw new Error("El nombre y la descripción son obligatorios.");
+    }
+
+    let result;
+    if(id){
+      result = await supabaseClient.from("services").update(record).eq("id",id);
+    }else{
+      result = await supabaseClient.from("services").insert(record);
+    }
+    if(result.error) throw result.error;
+
+    if(uploadedUrl && oldImage) await removeStoredImage(oldImage);
+    resetServiceForm();
+    showModuleMessage("servicesStatus",id ? "Servicio actualizado correctamente." : "Servicio agregado correctamente.");
+    await loadServices();
+  }catch(error){
+    if(uploadedUrl) await removeStoredImage(uploadedUrl);
+    showModuleMessage("servicesError","No se pudo guardar el servicio: " + error.message,"error");
+  }finally{
+    button.disabled = false;
+    button.textContent = $("serviceId").value ? "Guardar cambios" : "Guardar servicio";
+  }
+});
+
+/* GALERÍA */
+function resetGalleryForm(){
+  $("galleryForm").reset();
+  $("galleryDescriptions").innerHTML = "";
+  hideModuleMessage("galleryError");
+  hideModuleMessage("galleryStatus");
+}
+$("galleryImages").addEventListener("change",function(){
+  const container = $("galleryDescriptions");
+  container.innerHTML = "";
+  Array.from(this.files || []).forEach((file,index)=>{
+    const group = document.createElement("div");
+    group.className = "form-group";
+    const label = document.createElement("label");
+    label.textContent = "Descripción de: " + file.name;
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "new-gallery-description";
+    input.placeholder = "Descripción opcional";
+    input.dataset.index = index;
+    group.append(label,input);
+    container.appendChild(group);
+  });
+});
+
+async function loadGallery(){
+  const list = $("galleryList");
+  list.innerHTML = '<div class="notice">Cargando fotografías...</div>';
+  hideModuleMessage("galleryError");
+  try{
+    const {data,error} = await supabaseClient.from("gallery")
+      .select("*").order("sort_order",{ascending:true});
+    if(error) throw error;
+    galleryCache = data || [];
+    renderGallery();
+  }catch(error){
+    list.innerHTML = "";
+    showModuleMessage("galleryError","No se pudo cargar la galería: " + error.message,"error");
+  }
+}
+
+function renderGallery(){
+  const list = $("galleryList");
+  if(!galleryCache.length){
+    list.innerHTML = '<div class="empty-state">Todavía no hay fotografías en la galería.</div>';
+    return;
+  }
+  list.innerHTML = galleryCache.map(photo=>`
+    <article class="admin-item">
+      <img src="${escapeHTML(photo.image_url)}" alt="Fotografía de la galería">
+      <div class="item-content">
+        <h4>Fotografía</h4>
+        <p>${escapeHTML(photo.description || "Sin descripción")}</p>
+        <div class="status-text">Orden: ${Number(photo.sort_order || 0)}</div>
+        <div class="item-actions">
+          <button class="action-button" data-action="edit" data-id="${photo.id}">Editar descripción</button>
+          <button class="action-button" data-action="order" data-id="${photo.id}">Cambiar orden</button>
+          <button class="danger-button" data-action="delete" data-id="${photo.id}">Eliminar</button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+$("galleryList").addEventListener("click",async function(event){
+  const button = event.target.closest("button[data-action]");
+  if(!button) return;
+  const photo = galleryCache.find(item=>item.id === button.dataset.id);
+  if(!photo) return;
+  const action = button.dataset.action;
+
+  if(action === "edit"){
+    const description = prompt("Escribe la descripción de esta fotografía (puedes dejarla vacía):",photo.description || "");
+    if(description === null) return;
+    button.disabled = true;
+    try{
+      const {error} = await supabaseClient.from("gallery")
+        .update({description:description.trim()}).eq("id",photo.id);
+      if(error) throw error;
+      showModuleMessage("galleryStatus","Descripción actualizada correctamente.");
+      await loadGallery();
+    }catch(error){
+      showModuleMessage("galleryError","No se pudo actualizar la descripción: " + error.message,"error");
+    }finally{button.disabled = false;}
+  }
+
+  if(action === "order"){
+    const value = prompt("Escribe el nuevo número de orden:",String(photo.sort_order ?? 0));
+    if(value === null) return;
+    if(value.trim() === "" || !Number.isFinite(Number(value))){
+      alert("Debes escribir un número válido.");
+      return;
+    }
+    button.disabled = true;
+    try{
+      const {error} = await supabaseClient.from("gallery")
+        .update({sort_order:Number(value)}).eq("id",photo.id);
+      if(error) throw error;
+      showModuleMessage("galleryStatus","Orden actualizado correctamente.");
+      await loadGallery();
+    }catch(error){
+      showModuleMessage("galleryError","No se pudo cambiar el orden: " + error.message,"error");
+    }finally{button.disabled = false;}
+  }
+
+  if(action === "delete"){
+    if(!confirm("¿Seguro que deseas eliminar esta fotografía de la galería?")) return;
+    button.disabled = true;
+    try{
+      const {error} = await supabaseClient.from("gallery").delete().eq("id",photo.id);
+      if(error) throw error;
+      await removeStoredImage(photo.image_url);
+      showModuleMessage("galleryStatus","Fotografía eliminada correctamente.");
+      await loadGallery();
+    }catch(error){
+      showModuleMessage("galleryError","No se pudo eliminar la fotografía: " + error.message,"error");
+    }finally{button.disabled = false;}
+  }
+});
+
+$("galleryForm").addEventListener("submit",async function(event){
+  event.preventDefault();
+  hideModuleMessage("galleryError");
+  hideModuleMessage("galleryStatus");
+  const files = Array.from($("galleryImages").files || []);
+  if(!files.length){
+    showModuleMessage("galleryError","Selecciona al menos una fotografía.","error");
+    return;
+  }
+
+  const button = $("uploadGallery");
+  button.disabled = true;
+  let uploadedUrls = [];
+  button.textContent = "Subiendo fotografías...";
+
+  try{
+    const descriptions = Array.from(document.querySelectorAll(".new-gallery-description"));
+    const {data:existing,error:readError} = await supabaseClient.from("gallery")
+      .select("sort_order").order("sort_order",{ascending:false}).limit(1);
+    if(readError) throw readError;
+    let nextOrder = existing && existing.length ? Number(existing[0].sort_order || 0) + 1 : 0;
+
+    for(let i=0;i<files.length;i++){
+      const url = await uploadImage(files[i],"galeria");
+      uploadedUrls.push(url);
+      const descriptionInput = descriptions.find(input=>Number(input.dataset.index) === i);
+      const record = {
+        image_url:url,
+        description:descriptionInput ? descriptionInput.value.trim() : "",
+        sort_order:nextOrder++
+      };
+      const {error} = await supabaseClient.from("gallery").insert(record);
+      if(error) throw error;
+    }
+
+    resetGalleryForm();
+    showModuleMessage("galleryStatus","Fotografías subidas correctamente.");
+    await loadGallery();
+  }catch(error){
+    showModuleMessage("galleryError","No se pudieron subir todas las fotografías: " + error.message,"error");
+  }finally{
+    button.disabled = false;
+    button.textContent = "Subir fotografías";
+  }
+});
+
+/* REDES SOCIALES */
+async function loadSocial(){
+  hideModuleMessage("socialError");
+  hideModuleMessage("socialStatus");
+  try{
+    const {data,error} = await supabaseClient.from("social_links")
+      .select("*").eq("id",1).single();
+    if(error) throw error;
+
+    $("facebook").value = data.facebook || "";
+    $("instagram").value = data.instagram || "";
+    $("tiktok").value = data.tiktok || "";
+    $("youtube").value = data.youtube || "";
+
+    $("facebookActive").checked = data.facebook_active !== false;
+    $("instagramActive").checked = data.instagram_active !== false;
+    $("tiktokActive").checked = data.tiktok_active !== false;
+    $("youtubeActive").checked = data.youtube_active !== false;
+  }catch(error){
+    showModuleMessage("socialError","No se pudieron cargar las redes sociales: " + error.message,"error");
+  }
+}
+
+$("socialForm").addEventListener("submit",async function(event){
+  event.preventDefault();
+  hideModuleMessage("socialError");
+  hideModuleMessage("socialStatus");
+  const button = $("saveSocial");
+  button.disabled = true;
+  button.textContent = "Guardando...";
+
+  const updated = {
+    facebook:$("facebook").value.trim(),
+    instagram:$("instagram").value.trim(),
+    tiktok:$("tiktok").value.trim(),
+    youtube:$("youtube").value.trim(),
+    facebook_active:$("facebookActive").checked,
+    instagram_active:$("instagramActive").checked,
+    tiktok_active:$("tiktokActive").checked,
+    youtube_active:$("youtubeActive").checked,
+    updated_at:new Date().toISOString()
+  };
+
+  try{
+    const {data,error} = await supabaseClient.from("social_links")
+      .update(updated).eq("id",1).select().single();
+    if(error) throw error;
+    if(!data) throw new Error("No se encontró el registro de redes sociales.");
+    showModuleMessage("socialStatus","Redes sociales actualizadas correctamente.");
+  }catch(error){
+    showModuleMessage("socialError","No se pudieron guardar las redes sociales: " + error.message,"error");
+  }finally{
+    button.disabled = false;
+    button.textContent = "Guardar cambios";
+  }
+});
+
+supabaseClient.auth.onAuthStateChange(function(event,session){
+  if(session) showAdminPanel();
+  else showLogin();
 });
 
 checkSession();
